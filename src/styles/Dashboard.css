@@ -55,12 +55,20 @@ body {
   padding: 0;
 }
 
+/* Prevent horizontal scroll from vw units */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* Dashboard Container */
 .dashboard {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Header */
@@ -68,8 +76,8 @@ body {
   background: var(--neu-white);
   border-bottom: var(--border);
   padding: var(--space-lg) var(--space-xl);
-  width: 100vw;
-  
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .header-content {
@@ -161,6 +169,7 @@ body {
   margin: 0 auto;
   padding: var(--space-xl);
   width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
