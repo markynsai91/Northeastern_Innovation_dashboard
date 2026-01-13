@@ -22,6 +22,7 @@ const InsightsGrid = ({
           <div className="insight-title">
             <div className="insight-icon">★</div>
             Strategic Focus Areas
+            <div className="filter-hint">Click themes to filter • Click again to clear</div>
           </div>
         </div>
         <div className="insight-body">
@@ -40,6 +41,7 @@ const InsightsGrid = ({
           <div className="insight-title">
             <div className="insight-icon">→</div>
             Innovation Maturity Pipeline
+            <div className="filter-hint">Click bars to filter • Click again to clear</div>
           </div>
         </div>
         <div className="insight-body">
