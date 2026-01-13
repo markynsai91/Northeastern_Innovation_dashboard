@@ -1,4 +1,14 @@
 /* Northeastern University Innovation Dashboard Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
 
 /* CSS Custom Properties */
 :root {
@@ -76,8 +86,6 @@ html, body {
   background: var(--neu-white);
   border-bottom: var(--border);
   padding: var(--space-lg) var(--space-xl);
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .header-content {
