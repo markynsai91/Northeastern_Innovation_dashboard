@@ -76,12 +76,7 @@ const MetricsGrid = ({ data, originalData, onDataStatusFilter, onCampusFilter })
       </div>
 
       {/* Data Ready Projects */}
-      <div 
-        className="metric-card data-ready clickable"
-        onClick={() => handleMetricClick('dataReady')}
-        role="button"
-        tabIndex={0}
-      >
+      <div className="metric-card">
         <div className="metric-icon">📈</div>
         <div className="metric-content">
           <div className="metric-number">{metrics.dataReady}</div>
