@@ -1,14 +1,4 @@
 /* Northeastern University Innovation Dashboard Styles */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-}
 
 /* CSS Custom Properties */
 :root {
@@ -45,15 +35,11 @@ html, body, #root {
   --shadow-accent: 0 4px 12px rgba(196, 30, 58, 0.2);
 }
 
-/* Global Styles */
-* {
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  overflow-x: hidden;
 }
 
 body {
@@ -61,14 +47,6 @@ body {
   background: var(--gray-50);
   color: var(--neu-dark-gray);
   line-height: 1.5;
-  margin: 0;
-  padding: 0;
-}
-
-/* Prevent horizontal scroll from vw units */
-html, body {
-  overflow-x: hidden;
-  max-width: 100%;
 }
 
 /* Dashboard Container */
@@ -76,9 +54,6 @@ html, body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
 }
 
 /* Header */
@@ -89,7 +64,8 @@ html, body {
 }
 
 .header-content {
-  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -177,7 +153,6 @@ html, body {
   margin: 0 auto;
   padding: var(--space-xl);
   width: 100%;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
@@ -283,8 +258,7 @@ html, body {
   min-height: 300px;
 }
 
-/* Theme Constellation - MORE VERTICAL SPACING (28px between rows) */
-/* 3 rows × 52px + 2 gaps × 28px + top 10px + bottom 10px = 232px */
+/* Theme Constellation */
 .theme-constellation {
   position: relative;
   height: 232px;
@@ -385,7 +359,7 @@ html, body {
   gap: var(--space-sm);
 }
 
-/* Pipeline bars - INCREASED WIDTH and CENTERED NUMBER */
+/* Pipeline bars */
 .pipeline-bar {
   width: 100px;
   background: linear-gradient(to top, var(--neu-navy) 0%, #4a7bc8 100%);
@@ -792,7 +766,7 @@ html, body {
   }
 }
 
-/* Strategic Focus Areas card - fits content with spacing */
+/* Strategic Focus Areas card */
 .focus-areas-card .insight-body {
   min-height: auto;
   padding: var(--space-md);
