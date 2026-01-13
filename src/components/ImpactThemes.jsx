@@ -60,19 +60,16 @@ const ImpactThemes = ({
         </div>
       `;
 
-     // Add click handler to the count number
+      // Add click handler to the count number
       const countNumber = impactItem.querySelector('.impact-number');
       countNumber.addEventListener('click', () => {
-        // Check if this filter is already active (toggle functionality)
         const isActive = activeQualitativeTheme && 
           activeQualitativeTheme.type === 'impact' && 
           activeQualitativeTheme.theme === theme;
           
         if (isActive) {
-          // If already active, clear the filter by passing null
           onQualitativeThemeFilter(null, null);
         } else {
-          // Apply the filter
           onQualitativeThemeFilter('impact', theme);
         }
       });
@@ -81,15 +78,14 @@ const ImpactThemes = ({
     });
   };
 
-  // Get description for impact theme
+  // Get description for impact theme - UPDATED to match actual theme names
   const getImpactDescription = (theme) => {
     const descriptions = {
-      'Student Outcomes': 'Direct positive effects on student learning and success',
-      'Faculty Development': 'Professional growth and capacity building for educators',
-      'Institutional Change': 'University-wide improvements and organizational transformation',
-      'Community Impact': 'External benefits to broader communities and stakeholders',
-      'Research Advancement': 'Contributions to knowledge discovery and academic research',
-      'Process Improvement': 'Enhanced efficiency and streamlined operational procedures'
+      'Student Success': 'Improved learning outcomes, retention, and student engagement',
+      'Operational Efficiency': 'Streamlined processes, automation, and productivity gains',
+      'Community Building': 'Stronger networks, connections, and collaborative partnerships',
+      'Innovation Culture': 'Fostering creativity, entrepreneurship, and innovative mindsets',
+      'Research Advancement': 'Knowledge discovery, publications, and research findings'
     };
     return descriptions[theme] || 'Significant positive outcomes and transformational results';
   };

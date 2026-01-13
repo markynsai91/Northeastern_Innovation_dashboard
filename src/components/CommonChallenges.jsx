@@ -60,19 +60,16 @@ const CommonChallenges = ({
         </div>
       `;
 
-            // Add click handler to the count badge
+      // Add click handler to the count badge
       const countBadge = challengeItem.querySelector('.challenge-count');
       countBadge.addEventListener('click', () => {
-        // Check if this filter is already active (toggle functionality)
         const isActive = activeQualitativeTheme && 
           activeQualitativeTheme.type === 'challenges' && 
           activeQualitativeTheme.theme === theme;
           
         if (isActive) {
-          // If already active, clear the filter by passing null
           onQualitativeThemeFilter(null, null);
         } else {
-          // Apply the filter
           onQualitativeThemeFilter('challenges', theme);
         }
       });
@@ -81,15 +78,14 @@ const CommonChallenges = ({
     });
   };
 
-  // Get description for challenge theme
+  // Get description for challenge theme - UPDATED to match actual theme names
   const getChallengeDescription = (theme) => {
     const descriptions = {
-      'Student Engagement': 'Challenges in maintaining student participation and involvement',
-      'Time Management': 'Issues with timelines, scheduling, and deadline management', 
-      'Resource Allocation': 'Funding, staffing, and resource distribution challenges',
-      'Technology Integration': 'Difficulties with systems, platforms, and digital tools',
-      'Stakeholder Coordination': 'Communication and collaboration coordination issues',
-      'Scaling Challenges': 'Difficulties in expanding and growing initiatives'
+      'Resource Constraints': 'Funding, staffing, budget limitations, and capacity challenges',
+      'Scaling & Growth': 'Difficulties expanding initiatives and ensuring sustainability',
+      'Stakeholder Engagement': 'Building buy-in, adoption, and participation across groups',
+      'Technical Complexity': 'Technology integration, systems, and platform challenges',
+      'Coordination Challenges': 'Communication, collaboration, and alignment across silos'
     };
     return descriptions[theme] || 'Common operational and strategic challenges';
   };
