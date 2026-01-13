@@ -69,7 +69,7 @@ body {
   border-bottom: var(--border);
   padding: var(--space-lg) var(--space-xl);
   width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  
 }
 
 .header-content {
