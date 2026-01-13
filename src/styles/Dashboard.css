@@ -1,5 +1,17 @@
 /* Northeastern University Innovation Dashboard Styles */
 
+html {
+  background: #F9FAFB;
+}
+
+body {
+  background: #F9FAFB;
+  min-width: 100%;
+}
+
+#root {
+  min-width: 100%;
+}
 /* CSS Custom Properties */
 :root {
   --neu-navy: #002D72;
