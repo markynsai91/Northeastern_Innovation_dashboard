@@ -70,7 +70,7 @@ const MetricsGrid = ({ data, originalData, onDataStatusFilter, onCampusFilter })
         <div className="metric-icon">🚀</div>
         <div className="metric-content">
           <div className="metric-number">{metrics.highImpact}</div>
-          <div className="metric-label">High-Impact Projects</div>
+          <div className="metric-label">Large Scale projects</div>
           <div className="metric-description">Reaching 500+ people</div>
         </div>
       </div>
@@ -80,8 +80,8 @@ const MetricsGrid = ({ data, originalData, onDataStatusFilter, onCampusFilter })
         <div className="metric-icon">📈</div>
         <div className="metric-content">
           <div className="metric-number">{metrics.dataReady}</div>
-          <div className="metric-label">Data-Ready Projects</div>
-          <div className="metric-description">With measurement systems</div>
+          <div className="metric-label">Data Available Projects</div>
+          <div className="metric-description">Project lead has data</div>
         </div>
       </div>
 
