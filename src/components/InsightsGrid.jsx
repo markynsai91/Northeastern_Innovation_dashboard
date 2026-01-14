@@ -22,7 +22,11 @@ const InsightsGrid = ({
           <div className="insight-title">
             <div className="insight-icon">★</div>
             Strategic Focus Areas
-            <div className="filter-hint">Click themes to filter • Click again to clear • View filtered results in the Innovation Project Database below</div>
+            <div className="filter-hint">
+              Click themes to filter • Click again to clear
+              <br />
+              View filtered results in the Innovation Project Database below
+            </div>
           </div>
         </div>
         <div className="insight-body">
@@ -41,7 +45,11 @@ const InsightsGrid = ({
           <div className="insight-title">
             <div className="insight-icon">→</div>
             Innovation Maturity Pipeline
-            <div className="filter-hint">Click bars to filter • Click again to clear • View filtered results in the Innovation Project Database below</div>
+            <div className="filter-hint">
+              Click bars to filter • Click again to clear
+              <br />
+              View filtered results in the Innovation Project Database below
+            </div>
           </div>
         </div>
         <div className="insight-body">
