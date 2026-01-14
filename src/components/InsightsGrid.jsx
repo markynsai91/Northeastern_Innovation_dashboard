@@ -68,6 +68,7 @@ const InsightsGrid = ({
           <div className="insight-title">
             <div className="insight-icon">🌐</div>
             Campus Network Distribution
+            <div className="filter-hint">Projects across more than one campus are listed as Multi-Campus</div>
           </div>
         </div>
         <div className="insight-body">
