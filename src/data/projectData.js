@@ -172,7 +172,7 @@ export const dashboardData = {
     {
       title: "Husky Bridge Job-Shadow Program",
       college: "Career Development and Experiential Learning",
-      campus: "San Jose, California",
+      campus: "Silicon Valley, California",
       duration: "6 months - 1 year",
       reach: "1-25",
       dataStatus: "Yes - quantitative data",
@@ -1009,7 +1009,7 @@ export const dashboardData = {
     {
       title: "Value Creation",
       college: "CPS",
-      campus: "San Jose, California",
+      campus: "Silicon Valley, California",
       duration: "1-2 years",
       reach: "More than 1,000",
       dataStatus: "Yes - both quantitative and qualitative",
