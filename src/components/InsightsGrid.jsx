@@ -78,12 +78,12 @@ const InsightsGrid = ({
         </div>
       </div>
 
-      {/* Data Intelligence Readiness */}
+      {/* Data Availability */}
       <div className="insight-card">
         <div className="insight-header">
           <div className="insight-title">
             <div className="insight-icon">📈</div>
-            Data Intelligence Readiness
+            Data Availability
           </div>
         </div>
         <div className="insight-body">

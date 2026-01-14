@@ -92,20 +92,6 @@ const DataChart = ({ data }) => {
   return (
     <div className="data-chart-container">
       <Bar data={chartData} options={chartOptions} />
-      <div className="data-readiness-summary">
-        <div className="readiness-item">
-          <span className="readiness-indicator ready"></span>
-          <span className="readiness-text">Data Ready: Projects with active measurement systems</span>
-        </div>
-        <div className="readiness-item">
-          <span className="readiness-indicator planned"></span>
-          <span className="readiness-text">Collection Planned: Projects preparing data systems</span>
-        </div>
-        <div className="readiness-item">
-          <span className="readiness-indicator none"></span>
-          <span className="readiness-text">No Data: Projects without measurement plans</span>
-        </div>
-      </div>
     </div>
   );
 };
