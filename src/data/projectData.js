@@ -1,6 +1,6 @@
 // Northeastern University Innovation Project Data - Updated January 2026
-// Contains data for all 98 innovation projects across the global campus network
-// ✅ Updated from 90 to 98 projects (+8 new submissions)
+// Contains data for all 99 innovation projects across the global campus network
+// ✅ Updated from 98 to 99 projects (+1 new submission: Co-curricular Experiential Project)
 // ✅ Corrected duration mapping for proper maturity pipeline distribution
 // ✅ Standardized campus names to match original dashboard locations
 // ✅ All dashboard sections (metrics, charts, tables) will reflect new data
@@ -2651,6 +2651,33 @@ export const dashboardData = {
         data_results: "No response",
         success_metrics: "No response",
         additional_info: ""
+      }
+    },
+    {
+      title: "Co-curricular Experiential Project (Pilot)",
+      college: "Career Development and Experiential Learning Team",
+      campus: "Toronto",
+      duration: "6 months - 1 year",
+      reach: "26-100",
+      dataStatus: "Yes - both quantitative and qualitative",
+      qualitative: {
+        primary_contact_name: "Shane Malcolm",
+        primary_contact_email: "s.malcolm@northeastern.edu",
+        secondary_contact_name: "Julia Micallef",
+        secondary_contact_email: "j.micallef@northeastern.edu",
+        description: "The Co-Curricular Experiential Program (CEP) is a voluntary, unpaid experiential learning opportunity that connects Northeastern graduate students with meaningful community projects through partnerships with nonprofit and community organizations. Students commit 3-5 hours weekly to real-world projects that strengthen their resumes and build professional confidence, while community partners gain access to graduate-level skills and fresh perspectives to tackle high-impact initiatives they've had to defer due to capacity and resource constraints. Through these reciprocal partnerships, students apply their academic knowledge to address meaningful challenges while earning micro-credential digital badges that recognize their growth and contributions. This model transforms learning into lasting social impact, preparing students for today's competitive job market while strengthening community organizations across Toronto.",
+        problem_opportunity: "CEP addresses a dual challenge in experiential learning and community capacity. Graduate students need concrete portfolio pieces that demonstrate measurable impact to employers, but traditional co-op placements aren't always feasible due to program structure, visa restrictions, or timing constraints. Simultaneously, community organizations across Toronto have important strategic initiatives sitting on the back burner due to capacity constraints and limited budgets to access graduate-level expertise. This no-cost, flexible model allows organizations to finally advance stalled initiatives with fresh perspectives and cutting-edge knowledge from graduate coursework, while students develop the career-ready experience and credentials that set them apart in competitive job markets.",
+        challenges: "Some partners treating CEP as ongoing volunteer positions rather than defined project-based engagements. Projects expanding beyond original scope or lacking clear boundaries. Limited awareness of CEP among students and faculty across graduate programs.",
+        impact: "Created an accessible experiential pathway for graduate students unable to pursue traditional co-op. Enabled community organizations to advance high-impact projects despite capacity constraints. Built sustainable partnerships with Toronto organizations across diverse sectors. Students gained tangible career assets (portfolio pieces, references, professional confidence).",
+        lessons_learned: "More robust onboarding for both students and partners with clearer expectations about project-based vs. volunteer model and project scope. Stronger marketing and awareness campaign to faculty and students across colleges.",
+        recognition: "No",
+        innovation_type: "Programmatic Offering;Community engagement;",
+        target_audience: "Graduate students;Community members;",
+        partners: "CEP partners with a diverse network of Toronto-based community organizations and nonprofits across sectors including international development, health and wellness, youth services, environmental sustainability, food security, Indigenous-led initiatives, and science education. Current and past partners include: Casa Foundation for International Development, Addiction Rehab Toronto, Unity Health, Community Family Services of Ontario, Research Impact Canada, Water Speaks, Royal Canadian Institute for Science (RCIScience), Toronto Impact Initiative (North York Community House), CivicAction, WoodGreen Community Services, Climate Resilient Communities, Canadian Centre for Food and Ecology, hEr VOLUTION, Scadding Court Community Centre, Metrax Indigenous Corp., Eva's Initiatives for Homeless Youth, Hand Up from Hunger Toronto, LandSeed, Youth Safe Space Canada, Mothers to Daughters, and Nature Canada. The program also collaborates internally with Northeastern's staff and faculty across multiple graduate programs, as well as our career advisors who support students through structured reflection and professional development.",
+        evaluation_methods: "Surveys/feedback forms;",
+        data_results: "We collect final reflection surveys from students and final evaluation surveys from community partners at project completion. Student data (n=17 responses): Average 4.2/5 for professional skill development. Average 4.1/5 for likelihood to recommend program. Students report enhanced resumes, expanded networks, increased confidence, and deeper understanding of Canadian workplace culture. Partner data (n=11 responses): Average 4.5/5 for communication and support satisfaction. Organizations like Casa Foundation, Mothers to Daughters, and Metrax Indigenous Corp. report exceptional value and strong interest in future partnerships. Partners value students' professionalism, fresh perspectives, and ability to advance stalled initiatives. Areas for improvement identified by both groups: More structured check-ins and clearer project scope definition upfront. Enhanced orientation processes.",
+        success_metrics: "Project completion rate reaches X% (currently tracking 15 completed, 8 in progress). Student satisfaction scores consistently above 4/5 across all dimensions. Partner satisfaction and willingness to offer repeat projects remains high. Growing portfolio of diverse community partnerships across sectors. Students report tangible career outcomes (job offers, portfolio pieces, professional references). Program becomes financially sustainable and scalable.",
+        additional_info: "Automation tools (like Airtable) can streamline administrative processes while still maintaining the human touch that makes partnerships meaningful."
       }
     }
   ]

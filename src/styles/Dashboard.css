@@ -721,7 +721,7 @@ body {
 
 /* Footer */
 .footer {
-  background: var(--neu-navy);
+  background: #000000;
   color: var(--neu-white);
   padding: var(--space-lg) var(--space-xl);
   text-align: center;
