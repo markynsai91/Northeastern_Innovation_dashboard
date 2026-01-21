@@ -1,6 +1,6 @@
 // Northeastern University Innovation Project Data - Updated January 2026
-// Contains data for all 99 innovation projects across the global campus network
-// ✅ Updated from 98 to 99 projects (+1 new submission: Co-curricular Experiential Project)
+// Contains data for all 100 innovation projects across the global campus network
+// ✅ Updated to 100 projects (+2 new submissions: Co-curricular Experiential Project, Enactus Toronto)
 // ✅ Corrected duration mapping for proper maturity pipeline distribution
 // ✅ Standardized campus names to match original dashboard locations
 // ✅ All dashboard sections (metrics, charts, tables) will reflect new data
@@ -2678,6 +2678,33 @@ export const dashboardData = {
         data_results: "We collect final reflection surveys from students and final evaluation surveys from community partners at project completion. Student data (n=17 responses): Average 4.2/5 for professional skill development. Average 4.1/5 for likelihood to recommend program. Students report enhanced resumes, expanded networks, increased confidence, and deeper understanding of Canadian workplace culture. Partner data (n=11 responses): Average 4.5/5 for communication and support satisfaction. Organizations like Casa Foundation, Mothers to Daughters, and Metrax Indigenous Corp. report exceptional value and strong interest in future partnerships. Partners value students' professionalism, fresh perspectives, and ability to advance stalled initiatives. Areas for improvement identified by both groups: More structured check-ins and clearer project scope definition upfront. Enhanced orientation processes.",
         success_metrics: "Project completion rate reaches X% (currently tracking 15 completed, 8 in progress). Student satisfaction scores consistently above 4/5 across all dimensions. Partner satisfaction and willingness to offer repeat projects remains high. Growing portfolio of diverse community partnerships across sectors. Students report tangible career outcomes (job offers, portfolio pieces, professional references). Program becomes financially sustainable and scalable.",
         additional_info: "Automation tools (like Airtable) can streamline administrative processes while still maintaining the human touch that makes partnerships meaningful."
+      }
+    },
+    {
+      title: "Northeastern Toronto Entrepreneurship (Enactus)",
+      college: "Student Services",
+      campus: "Toronto",
+      duration: "1-2 years",
+      reach: "501-1000",
+      dataStatus: "Yes - both quantitative and qualitative",
+      qualitative: {
+        primary_contact_name: "Stephanie Cochrane",
+        primary_contact_email: "s.cochrane@northeastern.edu",
+        secondary_contact_name: "Andra Jasuleviciute (and Enactus SIG leaders)",
+        secondary_contact_email: "a.jasuleviciute@northeastern.edu",
+        description: "Northeastern University's Toronto Campus fosters student entrepreneurial spirit by providing support and guidance for student-led initiatives through Student Interest Groups (SIGs). A prime example is Enactus Northeastern Toronto, a student organization dedicated to leading social change through innovation and entrepreneurship. Enactus Toronto campus students have competed successfully in national competitions, earning awards for innovative projects addressing community engagement, food waste reduction, and social impact.",
+        problem_opportunity: "This innovation expands experiential learning by providing students with real-world opportunities and support in developing, pitching, and implementing entrepreneurial ideas. It translates learning into practical business skills, such as Enactus addressing community issues, including food insecurity, environmental sustainability, and economic inclusion. By supporting student-led initiatives, the campus creates a pathway for new entrepreneurs to gain hands-on experience, build confidence, and make meaningful impact.",
+        challenges: "One of the biggest challenges shared by the student leaders has been getting restaurants to trust and partner with them as a new student-led group. Many restaurant owners were hesitant because they weren't sure how the platform would work or if students could reliably manage it. Additionally, they have also faced difficulties in spreading awareness among students and getting them to regularly use the services available instead of their usual food options. Despite these challenges, Enactus learned to build trust through consistent communication and delivering on promises.",
+        impact: "Enactus' biggest impact has been through their project Second Plate, which reduces food waste and helps people (students) afford meals. They rescued over 419 meals from being thrown in the trash and saved more than 126 kg of good food from going to waste. They also helped students and community members save over $2,500 by offering them cheaper meal options. Beyond these numbers, Enactus changed how local restaurants and students think about leftover food—they now see it as valuable instead of waste.",
+        lessons_learned: "The students have shared that if starting over, they would prepare stronger marketing techniques, knowing that social media has a lot of reach and can increase volume of sales and engagement with more students across the community.",
+        recognition: "Enactus Northeastern competed at Enactus Canada Regionals where they won the TD Entrepreneurship Competition, qualifying them for the national competition in Calgary. This was a historic achievement for Northeastern University Toronto, as it was the first time the institution competed at nationals, advancing them to the semifinals. At the national level, Enactus became National Semi-Finalists, placing in the Top 20 teams across Canada. Enactus also received three prestigious awards: Best Rookie Team.",
+        innovation_type: "Student support;Community engagement;",
+        target_audience: "Graduate students;",
+        partners: "Enactus Canada, Toronto Campus Staff/Faculty Advisors, Local organizations and restaurants",
+        evaluation_methods: "Surveys/feedback forms;Performance metrics;Other;",
+        data_results: "Quantitative: Enactus winning prizes, participation in events, participating restaurant numbers and meals distributed. Qualitative: Student feedback, Enactus Canada feedback from program manager and judges.",
+        success_metrics: "Success has been demonstrated through the engagement and impact of Enactus Northeastern Toronto's entrepreneurial initiatives, recognition from the university, and recognition (formally and informally) from Enactus Canada. Specific goals are set by the students, and success is achieved through the pursuit of these goals with the support of staff, faculty, and mentors. The Enactus student group intends to continue to scale their projects and expand their reach with the university's support.",
+        additional_info: "The campus is proud of the work and accomplishments of the students engaged with Enactus and other entrepreneurial projects. Considering the limited funding, the students showcased creativity, resilience and commitment, and with the support and mentorship from staff and faculty, they have achieved a lot in the last year."
       }
     }
   ]
