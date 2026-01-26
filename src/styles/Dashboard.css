@@ -238,12 +238,13 @@ body {
   width: 100%;
 }
 
+/* UPDATED: Added overflow: visible for tooltips */
 .insight-card {
   background: var(--neu-white);
   border: var(--border);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .insight-header {
@@ -270,16 +271,23 @@ body {
   min-height: 300px;
 }
 
-/* Theme Constellation */
+/* UPDATED: Added overflow: visible for tooltips */
 .theme-constellation {
   position: relative;
   height: 232px;
   width: 100%;
+  overflow: visible;
 }
 
-/* Theme Node Wrapper - for positioning tooltip relative to node */
+/* UPDATED: Added z-index for proper tooltip stacking */
 .theme-node-wrapper {
   position: absolute;
+  z-index: 1;
+}
+
+/* NEW: Bring hovered node to front */
+.theme-node-wrapper:hover {
+  z-index: 100;
 }
 
 /* Theme Node */
@@ -311,12 +319,10 @@ body {
   box-shadow: var(--shadow-accent);
 }
 
-/* Theme Tooltip Styles */
+/* UPDATED: Base Theme Tooltip Styles */
 .theme-tooltip {
   position: absolute;
-  bottom: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: calc(100% + 12px);
   background: var(--gray-900);
   color: var(--neu-white);
   padding: 10px 14px;
@@ -324,7 +330,7 @@ body {
   font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
-  width: 280px;
+  width: 260px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   opacity: 0;
@@ -332,15 +338,55 @@ body {
   transition: all 0.2s ease;
   z-index: 1000;
   pointer-events: none;
+  white-space: normal;
 }
 
-/* Tooltip arrow */
-.theme-tooltip::after {
+/* NEW: Center-aligned tooltip (middle column) */
+.theme-tooltip.tooltip-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.theme-tooltip.tooltip-center::after {
   content: '';
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: var(--gray-900);
+}
+
+/* NEW: Left-aligned tooltip (left column - prevents right cutoff) */
+.theme-tooltip.tooltip-left {
+  left: 0;
+  transform: translateX(0);
+}
+
+.theme-tooltip.tooltip-left::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 24px;
+  transform: translateX(0);
+  border: 8px solid transparent;
+  border-top-color: var(--gray-900);
+}
+
+/* NEW: Right-aligned tooltip (right column - prevents left cutoff) */
+.theme-tooltip.tooltip-right {
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+
+.theme-tooltip.tooltip-right::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 24px;
+  left: auto;
+  transform: translateX(0);
   border: 8px solid transparent;
   border-top-color: var(--gray-900);
 }
@@ -778,10 +824,11 @@ body {
   }
 }
 
-/* Strategic Focus Areas card */
+/* UPDATED: Strategic Focus Areas card - added overflow visible */
 .focus-areas-card .insight-body {
   min-height: auto;
   padding: var(--space-md);
+  overflow: visible;
 }
 
 /* Pipeline card specific styling */

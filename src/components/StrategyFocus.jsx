@@ -73,17 +73,28 @@ const StrategyFocus = ({ data, onThemeFilter, activeTheme, getThemeKeywords }) =
       node.textContent = `${theme} (${count})`;
       node.dataset.theme = theme;
       
-      // Create tooltip
+      // Create tooltip with position class based on column
       const tooltip = document.createElement('div');
       tooltip.className = 'theme-tooltip';
       tooltip.textContent = categoryDescriptions[theme] || 'Innovation focus area';
+      
+      // Determine column position for smart tooltip alignment
+      const col = index % cols;
+      
+      // Add position class for tooltip alignment to prevent cutoff
+      if (col === 0) {
+        tooltip.classList.add('tooltip-left');
+      } else if (col === 2) {
+        tooltip.classList.add('tooltip-right');
+      } else {
+        tooltip.classList.add('tooltip-center');
+      }
       
       // Add click handler for filtering
       node.addEventListener('click', () => {
         onThemeFilter(theme);
       });
       
-      const col = index % cols;
       const row = Math.floor(index / cols);
       
       const x = startX + (col * (nodeWidth + marginX));
