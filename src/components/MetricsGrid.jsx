@@ -1,15 +1,15 @@
 import React from 'react';
 
 const MetricsGrid = ({ data, originalData, onDataStatusFilter, onCampusFilter }) => {
-  // Calculate metrics from current filtered data
+  // Calculate metrics from original (unfiltered) data
   const calculateMetrics = () => {
-    const total = data.projects.length;
+    const total = originalData.projects.length;
     
-    const highImpact = data.projects.filter(p => 
+    const highImpact = originalData.projects.filter(p => 
       ['501-1000', 'More than 1,000'].includes(p.reach)
     ).length;
     
-    const dataReady = data.projects.filter(p => 
+    const dataReady = originalData.projects.filter(p => 
       p.dataStatus.includes('Yes')
     ).length;
     
