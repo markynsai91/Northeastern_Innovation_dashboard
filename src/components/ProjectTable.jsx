@@ -187,6 +187,15 @@ const ProjectTable = ({ data, getProjectStage }) => {
                               )}
                             </div>
 
+                            {project.qualitative.partners && (
+                              <div className="details-section">
+                                <div className="insight-item">
+                                  <span className="insight-label">Partners and Stakeholders:</span>
+                                  <p className="insight-text">{project.qualitative.partners}</p>
+                                </div>
+                              </div>
+                            )}
+
                             {/* Contact Information */}
                             <div className="details-section contacts-section">
                               <h4 className="details-title">Project Contacts</h4>
