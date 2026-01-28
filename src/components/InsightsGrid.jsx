@@ -12,7 +12,10 @@ const InsightsGrid = ({
   activeTheme, 
   activeStage, 
   getProjectStage, 
-  getThemeKeywords 
+  getThemeKeywords,
+  isThemeProjectExcluded,
+  isThemeProjectIncluded,
+  themeHasIncludeList
 }) => {
   return (
     <section className="insights-grid">
@@ -35,6 +38,9 @@ const InsightsGrid = ({
             onThemeFilter={onThemeFilter}
             activeTheme={activeTheme}
             getThemeKeywords={getThemeKeywords}
+            isThemeProjectExcluded={isThemeProjectExcluded}
+            isThemeProjectIncluded={isThemeProjectIncluded}
+            themeHasIncludeList={themeHasIncludeList}
           />
         </div>
       </div>

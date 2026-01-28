@@ -1,16 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 
-const StrategyFocus = ({ data, onThemeFilter, activeTheme, getThemeKeywords }) => {
+const StrategyFocus = ({ data, onThemeFilter, activeTheme, getThemeKeywords, isThemeProjectExcluded, isThemeProjectIncluded, themeHasIncludeList }) => {
   const containerRef = useRef(null);
 
   // Category descriptions for tooltips
   const categoryDescriptions = {
     'AI & Technology': 'Projects leveraging artificial intelligence, digital platforms, AR/VR, databases, and emerging technologies to enhance education and operations.',
     'Healthcare': 'Healthcare, medical, and wellness-related innovations improving health outcomes and education.',
-    'Research': 'Innovations centered on research methodology, laboratory-based experimentation, academic inquiry, and scholarly investigation.',
-    'Cross-Campus Initiatives': 'Collaborative initiatives strengthening programs across multiple campuses, fostering institutional cohesion throughout the university network.',
-    'Partnerships': 'Industry collaborations, external alliances, and embedded partnership programs connecting academia with practice and community organizations.',
-    'Career Development': 'Programs preparing students for professional success, including workforce development and career transition support.',
+    'Research': 'Innovations centered on research methodology, laboratory-based experimentation, and scholarly investigation.',
+    'Cross-Campus Initiatives': 'Collaborative initiatives strengthening programs across multiple campuses.',
+    'External Partnerships': 'Industry collaborations, external alliances, and embedded partnership programs connecting academia with practice and community organizations.',
+    'Career Development': 'Programs preparing students for professional success, including workforce development, mentorship, and career transition support.',
     'Student Services': 'Programs enhancing student experience through mentorship, advising, support systems, and campus life initiatives.',
     'Campus Operations': 'Infrastructure and facility innovations including spaces, housing, sustainability, and campus environment improvements.',
     'Academic Programs': 'Curriculum, admissions processes, experiential learning, co-op, and educational innovation delivery methods across disciplines.'
@@ -24,6 +24,16 @@ const StrategyFocus = ({ data, onThemeFilter, activeTheme, getThemeKeywords }) =
     Object.keys(themeKeywords).forEach(theme => {
       themeCounts[theme] = 0;
       data.projects.forEach(project => {
+        if (isThemeProjectIncluded && isThemeProjectIncluded(theme, project)) {
+          themeCounts[theme]++;
+          return;
+        }
+        if (themeHasIncludeList && themeHasIncludeList(theme)) {
+          return;
+        }
+        if (isThemeProjectExcluded && isThemeProjectExcluded(theme, project)) {
+          return;
+        }
         const text = (project.title + ' ' + project.college).toLowerCase();
         if (themeKeywords[theme].some(keyword => text.includes(keyword.toLowerCase()))) {
           themeCounts[theme]++;
