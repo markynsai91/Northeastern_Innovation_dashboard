@@ -10,7 +10,7 @@ export const dashboardData = {
     {
       title: "The Neurodiversity Initiative",
       college: "College of Engineering",
-      campus: "Multi-Campus",
+      campus: "Boston, Massachusetts",
       duration: "2-3 years",
       reach: "26-100",
       dataStatus: "Yes - both quantitative and qualitative",
@@ -2143,7 +2143,7 @@ export const dashboardData = {
     {
       title: "Pre-Arrival Career Development Program",
       college: "Career Development and Experiential Learning Team",
-      campus: "Multi-Campus",
+      campus: "Vancouver, Canada",
       duration: "2-3 years",
       reach: "More than 1,000",
       dataStatus: "Yes - both quantitative and qualitative",

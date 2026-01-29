@@ -18,7 +18,9 @@ const ImpactThemes = ({
       'Campfire Chats',
       'MaineSeq',
       'Pre-Arrival Career Development Program'
-    ].map(title => title.toLowerCase())),
+    ].map(title => title.toLowerCase()))
+  };
+  const includedTitlesByTheme = {
     'Operational Efficiency': new Set([
       'Seattle Campus Innovative Spaces',
       'Integration of UG curriculum to PlusOne',
@@ -47,8 +49,16 @@ const ImpactThemes = ({
     Object.entries(impactKeywords).forEach(([theme, keywords]) => {
       let count = 0;
       data.projects.forEach(project => {
+        const includeSet = includedTitlesByTheme[theme];
+        if (includeSet && !includeSet.has(project.title.toLowerCase())) {
+          return;
+        }
         const excludeSet = excludedTitlesByTheme[theme];
         if (excludeSet && excludeSet.has(project.title.toLowerCase())) {
+          return;
+        }
+        if (includeSet) {
+          count++;
           return;
         }
         const text = (project.qualitative.challenges + ' ' + project.qualitative.impact).toLowerCase();

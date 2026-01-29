@@ -159,6 +159,7 @@ const Dashboard = () => {
       'Leveraging Award-Winning Apprenticeship Degrees to Embed Authentic, Industry-Validated Experiential Learning Across the Institution'
     ].map(title => title.toLowerCase())),
     'Cross-Campus Initiatives': new Set([
+      'The Neurodiversity Initiative',
       'Writing Creatively in the Age of AI',
       'The Evolving Skills Landscape in the Age of AI: Regional Employers Focus Groups',
       'Undergraduate Research Badging Program',
@@ -282,6 +283,11 @@ const Dashboard = () => {
         'MaineSeq',
         'Pre-Arrival Career Development Program'
       ].map(title => title.toLowerCase())),
+    }
+  };
+
+  const qualitativeThemeIncludedTitles = {
+    impact: {
       'Operational Efficiency': new Set([
         'Seattle Campus Innovative Spaces',
         'Integration of UG curriculum to PlusOne',
@@ -362,12 +368,19 @@ const Dashboard = () => {
       // Qualitative theme filter (Challenges/Impact themes)
       let matchesQualitativeTheme = !qualitativeTheme;
       if (qualitativeTheme) {
-        const keywords = getQualitativeKeywords();
-        const text = (project.qualitative.challenges + ' ' + project.qualitative.impact).toLowerCase();
-        if (keywords[qualitativeTheme.type] && keywords[qualitativeTheme.type][qualitativeTheme.theme]) {
-          matchesQualitativeTheme = keywords[qualitativeTheme.type][qualitativeTheme.theme].some(keyword =>
-            text.includes(keyword.toLowerCase())
-          );
+        const includeSet =
+          qualitativeThemeIncludedTitles[qualitativeTheme.type] &&
+          qualitativeThemeIncludedTitles[qualitativeTheme.type][qualitativeTheme.theme];
+        if (includeSet) {
+          matchesQualitativeTheme = includeSet.has(project.title.toLowerCase());
+        } else {
+          const keywords = getQualitativeKeywords();
+          const text = (project.qualitative.challenges + ' ' + project.qualitative.impact).toLowerCase();
+          if (keywords[qualitativeTheme.type] && keywords[qualitativeTheme.type][qualitativeTheme.theme]) {
+            matchesQualitativeTheme = keywords[qualitativeTheme.type][qualitativeTheme.theme].some(keyword =>
+              text.includes(keyword.toLowerCase())
+            );
+          }
         }
         if (matchesQualitativeTheme) {
           const excludeSet =
