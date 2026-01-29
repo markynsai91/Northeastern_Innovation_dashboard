@@ -112,7 +112,7 @@ const Dashboard = () => {
       'Working Lab',
       'Arlington County Leader’s Challenge Program',
       'Embedded Partner Ecosystem - Vancouver Campus.',
-      'BUILDING AN ENTREPRENEURSHIP ECO-SYSTEM TO SERVE LONDON & THE GLOBAL NETWORK',
+      'Building An Entrepreneurship Eco-System To Serve London & The Global Network',
       'SafeTALK and Support the Pack',
       'Pioneering Academia-Industry Collaborations at the Intersection of Artificial Intelligence & Philosophy',
       'Belonging in Practice: Driving Innovation in UK Higher Education through New Institutional Practices for Holistic Inclusion',
@@ -152,7 +152,7 @@ const Dashboard = () => {
       'InStage AI Reflection Tool for Co-op',
       'Use of Airtable and Airtable AI for Operational Effiency at Scale',
       'Embedded Partner Ecosystem - Vancouver Campus.',
-      'BUILDING AN ENTREPRENEURSHIP ECO-SYSTEM TO SERVE LONDON & THE GLOBAL NETWORK',
+      'Building An Entrepreneurship Eco-System To Serve London & The Global Network',
       'Graduate Student Advising Model: Graduate Faculty Advisor/Program Director Training / Faculty Advisor Use of Navigate',
       'Belonging in Practice: Driving Innovation in UK Higher Education through New Institutional Practices for Holistic Inclusion',
       'MSDS/MSCS Co-rooming',
@@ -174,8 +174,127 @@ const Dashboard = () => {
       'Pre-Arrival Career Development Program',
       'InStage AI Reflection Tool for Co-op',
       'Use of Airtable and Airtable AI for Operational Effiency at Scale',
-      'BUILDING AN ENTREPRENEURSHIP ECO-SYSTEM TO SERVE LONDON & THE GLOBAL NETWORK'
+      'Building An Entrepreneurship Eco-System To Serve London & The Global Network'
     ].map(title => title.toLowerCase()))
+  };
+
+  const qualitativeThemeExcludedTitles = {
+    challenges: {
+      'Resource Constraints': new Set([
+        'Writing Creatively in the Age of AI',
+        'SIG (Student Interest Group) Leader Training Module',
+        'Align Online',
+        'The Innovation Nexus',
+        'Redevelopment and Expansion of EESC3000 – Values, Ethics, and Professionalism in the Sciences',
+        'Integration of UG curriculum to PlusOne',
+        'Impact Project',
+        'Embedded Partners Program',
+        'Proposed Global Urban Studies Major/Minor',
+        'CAMD10',
+        'Student Leadership Development (Student Interest Groups & Graduate Leadership Institute) - Toronto Campus',
+        'Experiential Learning Insights (E.L.I) Dashboard',
+        'UIP in Applied Sustainability',
+        'Drone Flying Program',
+        'Co-curricular Experiential Project (Pilot)'
+      ].map(title => title.toLowerCase())),
+      'Stakeholder Engagement': new Set([
+        'The Neurodiversity Initiative',
+        'Miami Innovation Academy',
+        'The Innovation Nexus',
+        'Redevelopment and Expansion of EESC3000 – Values, Ethics, and Professionalism in the Sciences',
+        'Campus as a Living Laboratory: Community-Led Urban Greening through the California Climate Action Corps',
+        'Health Forward',
+        'Value Creation',
+        'Public Transportation and Traffic Analysis in Toronto - Northeastern University in Toronto and the City of Toronto',
+        'Experiential Learning Insights (E.L.I) Dashboard',
+        'COS Science Connects to Innovation',
+        'CUNEF Universidad Co-Enrollment Residency Partnership',
+        'Northeastern University Global Innovation Challenge',
+        'cPort Credit Union Language Translation Tool',
+        'Campfire Chats',
+        'AI Readiness Survey',
+        'EDHEC Partnership',
+        'Working Lab',
+        'Pre-Arrival Career Development Program',
+        'Use of Airtable and Airtable AI for Operational Effiency at Scale',
+        'Building An Entrepreneurship Eco-System To Serve London & The Global Network',
+        'Belonging in Practice: Driving Innovation in UK Higher Education through New Institutional Practices for Holistic Inclusion'
+      ].map(title => title.toLowerCase())),
+      'Technical Complexity': new Set([
+        'Miami Innovation Academy',
+        'The Innovation Nexus',
+        'Accelerated Bachelor of Science in Nursing (ABSN) Program, Simulation Rooms, & Skills Lab',
+        'Speech-Language Center',
+        'Chan Norris Scholars program',
+        'Campus as a Living Laboratory: Community-Led Urban Greening through the California Climate Action Corps',
+        'Investigating the International Big Picture Learning Credential (IBPLC) for U.S. Admissions and Workforce Pathways',
+        'Impact Project',
+        'Support for Federal Employees, Federal Contractors, and Military/Veterans in Transition',
+        'Media Studios Organization (MSO): A Centralized Creative Technology Ecosystem',
+        'Northeastern University Global Innovation Challenge',
+        'AI Readiness Survey',
+        'Healthcare Gap Year Program',
+        'MaineSeq',
+        'AI Solutions Hub',
+        'Arlington County Leader’s Challenge Program',
+        'Pre-Arrival Career Development Program',
+        'Embedded Partner Ecosystem - Vancouver Campus.',
+        'Building An Entrepreneurship Eco-System To Serve London & The Global Network',
+        'Belonging in Practice: Driving Innovation in UK Higher Education through New Institutional Practices for Holistic Inclusion',
+        'Utilising Artificial Intelligence as a Learning Tool to Explore the Development of Undergraduate Students’ Mathematical Resilience',
+        'BioDesign for Rural Maine',
+        'Northeastern Toronto Entrepreneurship (Enactus)'
+      ].map(title => title.toLowerCase())),
+      'Coordination Challenges': new Set([
+        'Speech-Language Center',
+        'Campus as a Living Laboratory: Community-Led Urban Greening through the California Climate Action Corps',
+        'Health Forward',
+        'Res Hall Royale',
+        'InStage AI Reflection Tool for Co-op',
+        'Pioneering Academia-Industry Collaborations at the Intersection of Artificial Intelligence & Philosophy',
+        'BioDesign for Rural Maine',
+        'Northeastern Toronto Entrepreneurship (Enactus)'
+      ].map(title => title.toLowerCase())),
+      'Scaling & Growth': new Set([
+        'Accelerated Bachelor of Science in Nursing (ABSN) Program, Simulation Rooms, & Skills Lab',
+        'Impact Project',
+        'Embedded Partners Program',
+        'Toronto Peer Mentorship Program',
+        'Student Leadership Development (Student Interest Groups & Graduate Leadership Institute) - Toronto Campus',
+        'Sustainability Initiatives',
+        'Behavior Changing Workplace Learning',
+        'AI Readiness Survey',
+        'MaineSeq',
+        'Building An Entrepreneurship Eco-System To Serve London & The Global Network',
+        'Pioneering Academia-Industry Collaborations at the Intersection of Artificial Intelligence & Philosophy',
+        'Co-curricular Experiential Project (Pilot)'
+      ].map(title => title.toLowerCase()))
+    },
+    impact: {
+      'Research Advancement': new Set([
+        'Graduate Leadership Institute-Seattle Campus',
+        'Case Study Simulation Program',
+        'Redevelopment and Expansion of EESC3000 – Values, Ethics, and Professionalism in the Sciences',
+        'Impact Project',
+        'Student Leadership Development (Student Interest Groups & Graduate Leadership Institute) - Toronto Campus',
+        'Behavior Changing Workplace Learning',
+        'Campfire Chats',
+        'MaineSeq',
+        'Pre-Arrival Career Development Program'
+      ].map(title => title.toLowerCase())),
+      'Operational Efficiency': new Set([
+        'Seattle Campus Innovative Spaces',
+        'Integration of UG curriculum to PlusOne',
+        'Embedded Partners Program',
+        'AI Coach',
+        'Media Studios Organization (MSO): A Centralized Creative Technology Ecosystem',
+        'Partner Hub: Connecting Industry and Academia',
+        'InStage AI Reflection Tool for Co-op',
+        'Use of Airtable and Airtable AI for Operational Effiency at Scale',
+        'Embedded Partner Ecosystem - Vancouver Campus.',
+        'Graduate Student Advising Model: Graduate Faculty Advisor/Program Director Training / Faculty Advisor Use of Navigate'
+      ].map(title => title.toLowerCase()))
+    }
   };
 
   const isThemeProjectExcluded = (theme, project) => {
@@ -249,6 +368,14 @@ const Dashboard = () => {
           matchesQualitativeTheme = keywords[qualitativeTheme.type][qualitativeTheme.theme].some(keyword =>
             text.includes(keyword.toLowerCase())
           );
+        }
+        if (matchesQualitativeTheme) {
+          const excludeSet =
+            qualitativeThemeExcludedTitles[qualitativeTheme.type] &&
+            qualitativeThemeExcludedTitles[qualitativeTheme.type][qualitativeTheme.theme];
+          if (excludeSet && excludeSet.has(project.title.toLowerCase())) {
+            matchesQualitativeTheme = false;
+          }
         }
       }
 
@@ -362,7 +489,6 @@ const Dashboard = () => {
       'Student Success': ['student', 'learning', 'outcomes', 'success', 'retention', 'engagement'],
       'Operational Efficiency': ['efficiency', 'process', 'streamline', 'automation', 'productivity'],
       'Community Building': ['community', 'network', 'connection', 'collaboration', 'partnership'],
-      'Innovation Culture': ['innovation', 'culture', 'mindset', 'creativity', 'entrepreneurship'],
       'Research Advancement': ['research', 'discovery', 'knowledge', 'publication', 'findings']
     }
   });

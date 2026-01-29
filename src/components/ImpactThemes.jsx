@@ -7,6 +7,31 @@ const ImpactThemes = ({
   getQualitativeKeywords 
 }) => {
   const containerRef = useRef(null);
+  const excludedTitlesByTheme = {
+    'Research Advancement': new Set([
+      'Graduate Leadership Institute-Seattle Campus',
+      'Case Study Simulation Program',
+      'Redevelopment and Expansion of EESC3000 – Values, Ethics, and Professionalism in the Sciences',
+      'Impact Project',
+      'Student Leadership Development (Student Interest Groups & Graduate Leadership Institute) - Toronto Campus',
+      'Behavior Changing Workplace Learning',
+      'Campfire Chats',
+      'MaineSeq',
+      'Pre-Arrival Career Development Program'
+    ].map(title => title.toLowerCase())),
+    'Operational Efficiency': new Set([
+      'Seattle Campus Innovative Spaces',
+      'Integration of UG curriculum to PlusOne',
+      'Embedded Partners Program',
+      'AI Coach',
+      'Media Studios Organization (MSO): A Centralized Creative Technology Ecosystem',
+      'Partner Hub: Connecting Industry and Academia',
+      'InStage AI Reflection Tool for Co-op',
+      'Use of Airtable and Airtable AI for Operational Effiency at Scale',
+      'Embedded Partner Ecosystem - Vancouver Campus.',
+      'Graduate Student Advising Model: Graduate Faculty Advisor/Program Director Training / Faculty Advisor Use of Navigate'
+    ].map(title => title.toLowerCase()))
+  };
 
   // Create impact themes analysis with dynamic counting
   const createImpactThemes = () => {
@@ -22,6 +47,10 @@ const ImpactThemes = ({
     Object.entries(impactKeywords).forEach(([theme, keywords]) => {
       let count = 0;
       data.projects.forEach(project => {
+        const excludeSet = excludedTitlesByTheme[theme];
+        if (excludeSet && excludeSet.has(project.title.toLowerCase())) {
+          return;
+        }
         const text = (project.qualitative.challenges + ' ' + project.qualitative.impact).toLowerCase();
         if (keywords.some(keyword => text.includes(keyword.toLowerCase()))) {
           count++;
@@ -84,7 +113,6 @@ const ImpactThemes = ({
       'Student Success': 'Improved learning outcomes, retention, and student engagement',
       'Operational Efficiency': 'Streamlined processes, automation, and productivity gains',
       'Community Building': 'Stronger networks, connections, and collaborative partnerships',
-      'Innovation Culture': 'Fostering creativity, entrepreneurship, and innovative mindsets',
       'Research Advancement': 'Knowledge discovery, publications, and research findings'
     };
     return descriptions[theme] || 'Significant positive outcomes and transformational results';
