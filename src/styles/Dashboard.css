@@ -90,8 +90,8 @@ body {
 }
 
 .neu-logo {
-  width: 90px;
-  height: 90px;
+  width: 160px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,7 +105,7 @@ body {
 }
 
 .logo-fallback {
-  font-size: 40px;
+  font-size: 68px;
 }
 
 .header-title {
