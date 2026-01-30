@@ -2656,7 +2656,7 @@ export const dashboardData = {
     {
       title: "Co-curricular Experiential Project (Pilot)",
       college: "Career Development and Experiential Learning Team",
-      campus: "Toronto",
+      campus: "Toronto, Canada",
       duration: "6 months - 1 year",
       reach: "26-100",
       dataStatus: "Yes - both quantitative and qualitative",
@@ -2683,7 +2683,7 @@ export const dashboardData = {
     {
       title: "Northeastern Toronto Entrepreneurship (Enactus)",
       college: "Student Services",
-      campus: "Toronto",
+      campus: "Toronto, Canada",
       duration: "1-2 years",
       reach: "501-1000",
       dataStatus: "Yes - both quantitative and qualitative",
