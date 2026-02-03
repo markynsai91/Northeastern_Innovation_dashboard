@@ -2116,7 +2116,7 @@ export const dashboardData = {
     {
       title: "Arlington County Leader’s Challenge Program",
       college: "",
-      campus: "Portland, Maine",
+      campus: "Arlington, Virginia",
       duration: "1-2 years",
       reach: "1-25",
       dataStatus: "No, but data collection is planned",
