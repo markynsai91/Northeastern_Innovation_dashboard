@@ -468,7 +468,7 @@ export const dashboardData = {
     },
     {
       title: "Accelerated Bachelor of Science in Nursing (ABSN) Program, Simulation Rooms, & Skills Lab",
-      college: "Bouve College of Health Sciences / Charlotte Campus",
+      college: "Bouvé College of Health Sciences / Charlotte Campus",
       campus: "Charlotte, North Carolina",
       duration: "More than 3 years",
       reach: "101-500",
@@ -495,7 +495,7 @@ export const dashboardData = {
     },
     {
       title: "Speech-Language Center",
-      college: "Bouve College of Health Sciences / Charlotte Campus",
+      college: "Bouvé College of Health Sciences / Charlotte Campus",
       campus: "Charlotte, North Carolina",
       duration: "1-2 years",
       reach: "501-1000",
@@ -819,7 +819,7 @@ export const dashboardData = {
     },
     {
       title: "Health Forward",
-      college: "Bouve",
+      college: "Bouvé",
       campus: "Boston, Massachusetts",
       duration: "Less than 6 months",
       reach: "101-500",
@@ -1466,8 +1466,8 @@ export const dashboardData = {
       }
     },
     {
-      title: "Bouve Undergraduate Researcher Badge",
-      college: "Bouve",
+      title: "Bouvé Undergraduate Researcher Badge",
+      college: "Bouvé",
       campus: "Boston, Massachusetts",
       duration: "1-2 years",
       reach: "101-500",
@@ -1899,7 +1899,7 @@ export const dashboardData = {
     },
     {
       title: "Healthcare Gap Year Program",
-      college: "LSHE/Bouve College of Health Sciences",
+      college: "LSHE/Bouvé College of Health Sciences",
       campus: "Portland, Maine",
       duration: "2-3 years",
       reach: "101-500",
@@ -2358,7 +2358,7 @@ export const dashboardData = {
     },
     {
       title: "Graduate Student Advising Model: Graduate Faculty Advisor/Program Director Training / Faculty Advisor Use of Navigate",
-      college: "Bouve",
+      college: "Bouvé",
       campus: "Boston, Massachusetts",
       duration: "More than 3 years",
       reach: "More than 1,000",
