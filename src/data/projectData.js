@@ -981,7 +981,7 @@ export const dashboardData = {
     },
     {
       title: "Proposed Global Urban Studies Major/Minor",
-      college: "CSSH",
+      college: "College of Social Sciences and Humanities (CSSH)",
       campus: "Boston, Massachusetts",
       duration: "1-2 years",
       reach: "1-25",
@@ -1575,7 +1575,7 @@ export const dashboardData = {
     },
     {
       title: "CUNEF Universidad Co-Enrollment Residency Partnership",
-      college: "College of Social Sciences and Humanities",
+      college: "College of Social Sciences and Humanities (CSSH)",
       campus: "Arlington, Virginia",
       duration: "1-2 years",
       reach: "26-100",
@@ -1818,7 +1818,7 @@ export const dashboardData = {
     },
     {
       title: "UIP in Applied Sustainability",
-      college: "CSSH/The Policy School",
+      college: "College of Social Sciences and Humanities (CSSH)/The Policy School",
       campus: "Boston, Massachusetts",
       duration: "6 months - 1 year",
       reach: "1-25",
