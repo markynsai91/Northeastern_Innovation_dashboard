@@ -657,7 +657,7 @@ export const dashboardData = {
     },
     {
       title: "Integration of UG curriculum to PlusOne",
-      college: "COS",
+      college: "College of Science",
       campus: "Boston, Massachusetts",
       duration: "2-3 years",
       reach: "More than 1,000",
@@ -2007,7 +2007,7 @@ export const dashboardData = {
     },
     {
       title: "MaineSeq",
-      college: "COS",
+      college: "College of Science",
       campus: "Portland, Maine",
       duration: "6 months - 1 year",
       reach: "101-500",

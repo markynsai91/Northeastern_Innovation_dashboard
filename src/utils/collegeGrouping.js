@@ -21,7 +21,9 @@ const COLLEGE_GROUPS = [
   },
   {
     label: 'College of Science',
-    matches: (value) => value.includes('college of science')
+    matches: (value) =>
+      value.includes('college of science') ||
+      /\bcos\b/.test(value)
   },
   {
     label: 'College of Social Sciences and Humanities (CSSH)',
@@ -57,10 +59,6 @@ const COLLEGE_GROUPS = [
       value.includes('roux institute') ||
       value.includes('the roux institute') ||
       value.includes('roux')
-  },
-  {
-    label: 'COS',
-    matches: (value) => /\bcos\b/.test(value)
   }
 ];
 
