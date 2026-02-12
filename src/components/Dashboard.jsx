@@ -7,6 +7,7 @@ import InsightsGrid from './InsightsGrid';
 import InsightsHub from './InsightsHub';
 import Controls from './Controls';
 import ProjectTable from './ProjectTable';
+import { normalizeCollege } from '../utils/collegeGrouping';
 import '../styles/Dashboard.css';
 
 const Dashboard = () => {
@@ -14,6 +15,7 @@ const Dashboard = () => {
   const [activeFilters, setActiveFilters] = useState({
     search: '',
     campus: 'all',
+    college: 'all',
     stage: 'all',
     dataStatus: 'all',
     theme: null,
@@ -318,7 +320,7 @@ const Dashboard = () => {
 
   // Filter projects based on active filters
   const applyFilters = () => {
-    const { search, campus, stage, dataStatus, theme, qualitativeTheme } = activeFilters;
+    const { search, campus, college, stage, dataStatus, theme, qualitativeTheme } = activeFilters;
     
     const filtered = dashboardData.projects.filter(project => {
       // Search filter
@@ -329,6 +331,9 @@ const Dashboard = () => {
 
       // Campus filter
       const matchesCampus = campus === 'all' || project.campus === campus;
+
+      // College filter
+      const matchesCollege = college === 'all' || normalizeCollege(project.college) === college;
 
       // Stage filter (maturity)
       let matchesStage = stage === 'all';
@@ -392,7 +397,7 @@ const Dashboard = () => {
         }
       }
 
-      return matchesSearch && matchesCampus && matchesStage && matchesDataStatus && matchesTheme && matchesQualitativeTheme;
+      return matchesSearch && matchesCampus && matchesCollege && matchesStage && matchesDataStatus && matchesTheme && matchesQualitativeTheme;
     });
 
     setFilteredData({ projects: filtered });
@@ -541,6 +546,7 @@ const Dashboard = () => {
     setActiveFilters({
       search: '',
       campus: 'all',
+      college: 'all',
       stage: 'all',
       dataStatus: 'all',
       theme: null,

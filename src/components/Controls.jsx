@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { normalizeCollege } from '../utils/collegeGrouping';
 
 const Controls = ({ 
   data, 
@@ -8,14 +9,15 @@ const Controls = ({
   resultCount
 }) => {
   const [searchValue, setSearchValue] = useState('');
-  const [campusOptions, setCampusOptions] = useState([]);
 
-  // Initialize filter options
-  useEffect(() => {
-    // Get unique campus options
-    const campuses = [...new Set(data.projects.map(p => p.campus))].sort();
-    setCampusOptions(campuses);
-  }, [data]);
+  const campusOptions = useMemo(
+    () => [...new Set(data.projects.map(p => p.campus))].sort(),
+    [data]
+  );
+  const collegeOptions = useMemo(
+    () => [...new Set(data.projects.map(p => normalizeCollege(p.college)))].sort(),
+    [data]
+  );
 
   // Update search value when activeFilters change (for external filter clears)
   useEffect(() => {
@@ -51,6 +53,9 @@ const Controls = ({
     if (activeFilters.campus !== 'all') {
       return `🔍 Filtered by ${activeFilters.campus}...`;
     }
+    if (activeFilters.college !== 'all') {
+      return `🔍 Filtered by ${activeFilters.college}...`;
+    }
     if (activeFilters.qualitativeTheme) {
       return `🔍 Filtered by ${activeFilters.qualitativeTheme.theme}...`;
     }
@@ -79,6 +84,18 @@ const Controls = ({
           <option value="all">All Campuses</option>
           {campusOptions.map(campus => (
             <option key={campus} value={campus}>{campus}</option>
+          ))}
+        </select>
+
+        {/* College Filter */}
+        <select
+          className="filter-select"
+          value={activeFilters.college}
+          onChange={(e) => handleFilterChange('college', e.target.value)}
+        >
+          <option value="all">All Colleges</option>
+          {collegeOptions.map(college => (
+            <option key={college} value={college}>{college}</option>
           ))}
         </select>
 
@@ -116,6 +133,7 @@ const Controls = ({
         {/* Clear Filters Button */}
         {(activeFilters.search || 
           activeFilters.campus !== 'all' || 
+          activeFilters.college !== 'all' || 
           activeFilters.stage !== 'all' || 
           activeFilters.dataStatus !== 'all' ||
           activeFilters.theme ||
