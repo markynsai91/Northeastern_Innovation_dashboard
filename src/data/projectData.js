@@ -522,7 +522,7 @@ export const dashboardData = {
     },
     {
       title: "CAMD F1RST",
-      college: "College of Arts, Media and Design",
+      college: "College of Arts, Media and Design (CAMD)",
       campus: "Boston, Massachusetts",
       duration: "More than 3 years",
       reach: "26-100",
@@ -1062,7 +1062,7 @@ export const dashboardData = {
     },
     {
       title: "Short Topics In Courses (STICs)",
-      college: "College of Arts, Media and Design",
+      college: "College of Arts, Media and Design (CAMD)",
       campus: "Boston, Massachusetts",
       duration: "1-2 years",
       reach: "26-100",
@@ -1116,7 +1116,7 @@ export const dashboardData = {
     },
     {
       title: "CAMD10",
-      college: "College of Arts, Media and Design",
+      college: "College of Arts, Media and Design (CAMD)",
       campus: "Boston, Massachusetts",
       duration: "2-3 years",
       reach: "101-500",
