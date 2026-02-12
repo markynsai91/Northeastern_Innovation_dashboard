@@ -93,7 +93,7 @@ const Controls = ({
           value={activeFilters.college}
           onChange={(e) => handleFilterChange('college', e.target.value)}
         >
-          <option value="all">All Colleges</option>
+          <option value="all">All Colleges/Department</option>
           {collegeOptions.map(college => (
             <option key={college} value={college}>{college}</option>
           ))}
