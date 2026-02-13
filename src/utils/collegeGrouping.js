@@ -1,6 +1,6 @@
 const COLLEGE_GROUPS = [
   {
-    label: 'College of Arts Media and Design',
+    label: 'College of Arts, Media and Design (CAMD)',
     matches: (value) =>
       value.includes('college of arts media and design') ||
       value.includes('college of arts, media and design') ||
@@ -20,7 +20,7 @@ const COLLEGE_GROUPS = [
       value.includes(' cps')
   },
   {
-    label: 'College of Science',
+    label: 'College of Science (COS)',
     matches: (value) =>
       value.includes('college of science') ||
       /\bcos\b/.test(value)
@@ -32,7 +32,7 @@ const COLLEGE_GROUPS = [
       value.includes(' cssh')
   },
   {
-    label: 'DMSB',
+    label: "D'Amore-McKim School of Business (DMSB)",
     matches: (value) => value.includes('dmsb')
   },
   {
@@ -52,6 +52,27 @@ const COLLEGE_GROUPS = [
     matches: (value) =>
       value.includes('mills institute') ||
       value.includes('the mills institute')
+  },
+  {
+    label: 'Career Development and Experiential Learning',
+    matches: (value) =>
+      value.includes('career development and experiential learning') ||
+      value.includes('career development & experiential learning')
+  },
+  {
+    label: 'Student Affairs',
+    matches: (value) =>
+      value.includes('student affairs') ||
+      value.includes('oakland student life') ||
+      value.includes('student services') ||
+      value.includes('network student life')
+  },
+  {
+    label: 'Computing, Mathematics, Engineering, and Natural Sciences (CoMENS)',
+    matches: (value) =>
+      value.includes('london - faculty of computing, mathematics, engineering and natural sciences (comens)') ||
+      value.includes('comens- computing, mathematics, engineering, and natural sciences') ||
+      value.includes('computing, mathematics, engineering, and natural sciences (comens)')
   },
   {
     label: 'Roux Institute',

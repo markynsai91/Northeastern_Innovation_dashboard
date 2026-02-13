@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { normalizeCollege } from '../utils/collegeGrouping';
 
 const Controls = ({ 
@@ -9,6 +9,8 @@ const Controls = ({
   resultCount
 }) => {
   const [searchValue, setSearchValue] = useState('');
+  const [isCollegeDropdownOpen, setIsCollegeDropdownOpen] = useState(false);
+  const collegeDropdownRef = useRef(null);
 
   const campusOptions = useMemo(
     () => [...new Set(data.projects.map(p => p.campus))].sort(),
@@ -23,6 +25,19 @@ const Controls = ({
   useEffect(() => {
     setSearchValue(activeFilters.search);
   }, [activeFilters.search]);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (collegeDropdownRef.current && !collegeDropdownRef.current.contains(event.target)) {
+        setIsCollegeDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
 
   // Handle search input
   const handleSearchChange = (e) => {
@@ -88,16 +103,44 @@ const Controls = ({
         </select>
 
         {/* College Filter */}
-        <select
-          className="filter-select"
-          value={activeFilters.college}
-          onChange={(e) => handleFilterChange('college', e.target.value)}
-        >
-          <option value="all">All Colleges/Department</option>
-          {collegeOptions.map(college => (
-            <option key={college} value={college}>{college}</option>
-          ))}
-        </select>
+        <div className="college-dropdown" ref={collegeDropdownRef}>
+          <button
+            type="button"
+            className="filter-select college-dropdown-trigger"
+            onClick={() => setIsCollegeDropdownOpen((open) => !open)}
+            aria-haspopup="listbox"
+            aria-expanded={isCollegeDropdownOpen}
+          >
+            {activeFilters.college === 'all' ? 'All Colleges/Department' : activeFilters.college}
+          </button>
+          {isCollegeDropdownOpen && (
+            <div className="college-dropdown-menu" role="listbox" aria-label="College/Department Filter">
+              <button
+                type="button"
+                className={`college-dropdown-option ${activeFilters.college === 'all' ? 'selected' : ''}`}
+                onClick={() => {
+                  handleFilterChange('college', 'all');
+                  setIsCollegeDropdownOpen(false);
+                }}
+              >
+                All Colleges/Department
+              </button>
+              {collegeOptions.map((college) => (
+                <button
+                  key={college}
+                  type="button"
+                  className={`college-dropdown-option ${activeFilters.college === college ? 'selected' : ''}`}
+                  onClick={() => {
+                    handleFilterChange('college', college);
+                    setIsCollegeDropdownOpen(false);
+                  }}
+                >
+                  {college}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Stage Filter */}
         <select 
