@@ -43,48 +43,36 @@ const CampusChart = ({ data }) => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-  position: 'bottom',
-  onClick: (evt, legendItem, legend) => {
-    const index = legendItem.index;
-    const chart = legend.chart;
-    const meta = chart.getDatasetMeta(0);
-    
-    // Toggle visibility
-    meta.data[index].hidden = !meta.data[index].hidden;
-    chart.update();
-  },
-  labels: {
-    padding: 10,
-    usePointStyle: true,
-    font: {
-      size: 11
-    },
-    generateLabels: function(chart) {
-      const data = chart.data;
-      if (data.labels.length && data.datasets.length) {
-        return data.labels.map((label, i) => {
-          const meta = chart.getDatasetMeta(0);
-          const style = meta.controller.getStyle(i);
-          const isHidden = meta.data[i].hidden;
-          
-          return {
-            text: `${label} (${data.datasets[0].data[i]})`,
-            fillStyle: isHidden ? '#ccc' : style.backgroundColor,
-            strokeStyle: style.borderColor,
-            lineWidth: style.borderWidth,
-            pointStyle: 'circle',
-            hidden: isNaN(data.datasets[0].data[i]),
-            index: i,
-            // Add strikethrough when hidden
-            fontStyle: isHidden ? 'normal' : 'normal',
-            textDecoration: isHidden ? 'line-through' : 'none'
-          };
-        });
-      }
-      return [];
-    }
-  }
-},
+        position: 'bottom',
+        onClick: () => {},
+        labels: {
+          padding: 10,
+          usePointStyle: true,
+          font: {
+            size: 11
+          },
+          generateLabels: function(chart) {
+            const data = chart.data;
+            if (data.labels.length && data.datasets.length) {
+              return data.labels.map((label, i) => {
+                const meta = chart.getDatasetMeta(0);
+                const style = meta.controller.getStyle(i);
+
+                return {
+                  text: `${label} (${data.datasets[0].data[i]})`,
+                  fillStyle: style.backgroundColor,
+                  strokeStyle: style.borderColor,
+                  lineWidth: style.borderWidth,
+                  pointStyle: 'circle',
+                  hidden: isNaN(data.datasets[0].data[i]),
+                  index: i
+                };
+              });
+            }
+            return [];
+          }
+        }
+      },
       tooltip: {
         callbacks: {
           label: function(context) {

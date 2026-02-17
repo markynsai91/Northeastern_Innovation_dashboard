@@ -8,6 +8,7 @@ import InsightsHub from './InsightsHub';
 import Controls from './Controls';
 import ProjectTable from './ProjectTable';
 import { getCollegeGroups } from '../utils/collegeGrouping';
+import { normalizeCampus } from '../utils/campusNormalization';
 import '../styles/Dashboard.css';
 
 const Dashboard = () => {
@@ -330,7 +331,9 @@ const Dashboard = () => {
         project.campus.toLowerCase().includes(search.toLowerCase());
 
       // Campus filter
-      const matchesCampus = campus === 'all' || project.campus === campus;
+      const matchesCampus =
+        campus === 'all' ||
+        normalizeCampus(project.campus) === normalizeCampus(campus);
 
       // College filter
       const matchesCollege = college === 'all' || getCollegeGroups(project.college).includes(college);
@@ -535,7 +538,7 @@ const Dashboard = () => {
         }
       }
     } else {
-      newFilters[filterType] = value;
+      newFilters[filterType] = filterType === 'campus' ? normalizeCampus(value) : value;
     }
     
     setActiveFilters(newFilters);
