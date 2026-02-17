@@ -1,0 +1,96 @@
+NORTHEASTERN DASHBOARD - PROJECT SUMMARY
+
+1) What this project is
+This project is a React + Vite web dashboard that documents and analyzes Northeastern University innovation initiatives across the global campus network. It is designed to give leadership and campus teams a single, searchable, filterable view of initiatives, outcomes, and qualitative insights.
+
+2) What was built
+- A full dashboard UI composed of reusable React components.
+- A centralized project dataset in `src/data/projectData.js`.
+- Portfolio-level metrics cards for project count, large-scale initiatives, data availability, and campus footprint.
+- Interactive analysis sections:
+  - Strategic Focus Areas (9 theme categories)
+  - Innovation Maturity Pipeline (Emerging, Growing, Mature)
+  - Campus Network Distribution chart
+  - Data Availability chart
+  - Insights Hub with Common Challenges and Impact Themes
+- Advanced filtering and exploration:
+  - Text search (title, college, campus)
+  - Campus filter
+  - College/department filter (with normalization/grouping)
+  - Maturity stage filter
+  - Data status filter
+  - Theme-based and qualitative-theme filters
+- Expandable project table with detailed records and contact information.
+
+3) Core data captured
+Each project record contains:
+- Metadata: title, college/department, campus, duration, reach, and data status
+- Contacts: primary and secondary contact names/emails
+- Qualitative intelligence fields:
+  - description
+  - problem/opportunity
+  - challenges
+  - impact
+  - lessons learned
+  - recognition
+  - innovation type
+  - target audience
+  - partners
+  - evaluation methods
+  - data results
+  - success metrics
+  - additional info
+
+4) Current dataset snapshot (from `projectData.js`)
+- Total projects tracked: 100
+- Campuses represented: 12
+- Distinct college/department labels: 59
+
+Reach distribution:
+- 1-25: 19
+- 26-100: 35
+- 101-500: 23
+- 501-1000: 13
+- More than 1,000: 10
+
+Duration distribution:
+- Less than 6 months: 13
+- 6 months - 1 year: 26
+- 1-2 years: 25
+- 2-3 years: 24
+- More than 3 years: 12
+
+Maturity distribution (derived from duration):
+- Emerging: 39
+- Growing: 49
+- Mature: 12
+
+Data status distribution:
+- Yes - both quantitative and qualitative: 49
+- Yes - quantitative data: 8
+- Yes - qualitative data: 4
+- No, but data collection is planned: 34
+- No data available: 5
+
+Dashboard-level data readiness rollup:
+- Data Ready: 61
+- Collection Planned: 34
+- No Data: 5
+
+5) How analysis is performed
+- Strategic themes are computed through keyword logic plus explicit include/exclude title overrides.
+- Qualitative challenge and impact themes are computed from text in challenges/impact fields with keyword logic and targeted include/exclude sets.
+- Maturity stage is inferred from project duration:
+  - Emerging: < 1 year
+  - Growing: 1-3 years
+  - Mature: > 3 years
+- College names are normalized through `src/utils/collegeGrouping.js` to improve filter consistency.
+
+6) Project outcome in plain terms
+This project produced a working innovation intelligence platform that turns a large, mixed-methods portfolio (quantitative + qualitative) into a practical decision-support tool. It captures who is doing what, where initiatives are happening, how mature they are, what evidence exists, and what common patterns are emerging across campuses.
+
+7) Notable implementation details
+- Frontend stack: React 19, Vite 7, Chart.js + react-chartjs-2.
+- Main app entry: `src/App.jsx` -> `src/components/Dashboard.jsx`.
+- Dashboard sections are modular and independently maintainable.
+- Existing `README.md` is still the default Vite template; this file serves as the project-level business summary.

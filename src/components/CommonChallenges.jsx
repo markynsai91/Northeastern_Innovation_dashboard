@@ -90,7 +90,7 @@ const CommonChallenges = ({
       'Toronto Peer Mentorship Program',
       'Student Leadership Development (Student Interest Groups & Graduate Leadership Institute) - Toronto Campus',
       'Sustainability Initiatives',
-      'Behavior Changing Workplace Learning',
+      'Behavior-Changing Workplace Learning',
       'AI Readiness Survey',
       'MaineSeq',
       'Building An Entrepreneurship Eco-System To Serve London & The Global Network',

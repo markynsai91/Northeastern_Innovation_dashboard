@@ -226,7 +226,7 @@ export const dashboardData = {
     {
       title: "Graduate Leadership Institute-Seattle Campus",
       college: "Student Affairs",
-      campus: "Seattle, Washington",
+      campus: "Silicon Valley",
       duration: "6 months - 1 year",
       reach: "1-25",
       dataStatus: "Yes - both quantitative and qualitative",
@@ -256,7 +256,7 @@ export const dashboardData = {
       campus: "Boston, Massachusetts",
       duration: "6 months - 1 year",
       reach: "1-25",
-      dataStatus: "No, but data collection is planned",
+      dataStatus: "Yes - qualitative data",
       qualitative: {
         primary_contact_name: "Matt Eckelman",
         primary_contact_email: "m.eckelman@northeastern.edu",
@@ -280,10 +280,10 @@ export const dashboardData = {
     {
       title: "The Evolving Skills Landscape in the Age of AI: Regional Employers Focus Groups",
       college: "",
-      campus: "Seattle, Washington",
+      campus: "Silicon Valley",
       duration: "1-2 years",
       reach: "26-100",
-      dataStatus: "No, but data collection is planned",
+      dataStatus: "Yes - qualitative data",
       qualitative: {
         primary_contact_name: "Caroline Simard, Dean for Silicon Valley campus",
         primary_contact_email: "c.simard@northeastern.edu",
@@ -1682,8 +1682,8 @@ export const dashboardData = {
       }
     },
     {
-      title: "Behavior Changing Workplace Learning",
-      college: "",
+      title: "Behavior-Changing Workplace Learning",
+      college: "Roux Institute Custom Learning; Non-Degree (through College of Professional Studies (CPS))",
       campus: "Portland, Maine",
       duration: "2-3 years",
       reach: "More than 1,000",
@@ -1710,7 +1710,7 @@ export const dashboardData = {
     },
     {
       title: "Framework-based Non-Degree Learning",
-      college: "Non-Degree (through College of Professional Studies (CPS))",
+      college: "Roux Institute Custom Learning; Non-Degree (through College of Professional Studies (CPS))",
       campus: "Portland, Maine",
       duration: "2-3 years",
       reach: "More than 1,000",
@@ -1764,7 +1764,7 @@ export const dashboardData = {
     },
     {
       title: "cPort Credit Union Language Translation Tool",
-      college: "",
+      college: "Roux Experiential Learning",
       campus: "Portland, Maine",
       duration: "Less than 6 months",
       reach: "501-1000",
@@ -2034,7 +2034,7 @@ export const dashboardData = {
     },
     {
       title: "Valorization of Dirigo Sea Farm Waste",
-      college: "",
+      college: "LSHE/College of Science",
       campus: "Portland, Maine",
       duration: "Less than 6 months",
       reach: "1-25",
@@ -2061,7 +2061,7 @@ export const dashboardData = {
     },
     {
       title: "Working Lab",
-      college: "",
+      college: "Roux Experiential Learning",
       campus: "Portland, Maine",
       duration: "1-2 years",
       reach: "26-100",
@@ -2088,7 +2088,7 @@ export const dashboardData = {
     },
     {
       title: "AI Solutions Hub",
-      college: "Roux",
+      college: "Experiential A.I. Institute, Roux Institute",
       campus: "Portland, Maine",
       duration: "More than 3 years",
       reach: "26-100",

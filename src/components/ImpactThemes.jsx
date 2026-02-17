@@ -14,7 +14,7 @@ const ImpactThemes = ({
       'Redevelopment and Expansion of EESC3000 – Values, Ethics, and Professionalism in the Sciences',
       'Impact Project',
       'Student Leadership Development (Student Interest Groups & Graduate Leadership Institute) - Toronto Campus',
-      'Behavior Changing Workplace Learning',
+      'Behavior-Changing Workplace Learning',
       'Campfire Chats',
       'MaineSeq',
       'Pre-Arrival Career Development Program'
