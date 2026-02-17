@@ -75,7 +75,7 @@ const InsightsGrid = ({
             <div className="insight-icon">🌐</div>
             Campus Network Distribution
             <div className="filter-hint">
-              Legend filters remove locations from this pie chart only, not from the Innovation Project Database below.
+              Legend filters remove locations from this pie chart only, they do not filter the Innovation Project Database list below.
             </div>
           </div>
         </div>
@@ -92,6 +92,9 @@ const InsightsGrid = ({
           <div className="insight-title">
             <div className="insight-icon">📈</div>
             Data Availability
+            <div className="filter-hint">
+              There is no filter for the Innovation Project Database list below.
+            </div>
           </div>
         </div>
         <div className="insight-body">
