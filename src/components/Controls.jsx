@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { normalizeCollege } from '../utils/collegeGrouping';
+import { getCollegeGroups } from '../utils/collegeGrouping';
 
 const Controls = ({ 
   data, 
@@ -17,7 +17,7 @@ const Controls = ({
     [data]
   );
   const collegeOptions = useMemo(
-    () => [...new Set(data.projects.map(p => normalizeCollege(p.college)))].sort(),
+    () => [...new Set(data.projects.flatMap((p) => getCollegeGroups(p.college)))].sort(),
     [data]
   );
 

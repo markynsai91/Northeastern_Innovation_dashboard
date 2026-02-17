@@ -83,14 +83,33 @@ const COLLEGE_GROUPS = [
   }
 ];
 
-export const normalizeCollege = (college = '') => {
+const isRouxCustomLearningNonDegreeCps = (value) =>
+  value.includes('roux institute custom learning') &&
+  value.includes('non-degree') &&
+  value.includes('college of professional studies (cps)');
+
+export const getCollegeGroups = (college = '') => {
   const normalizedValue = college.trim().toLowerCase();
+  const groups = [];
+
+  if (isRouxCustomLearningNonDegreeCps(normalizedValue)) {
+    groups.push('Roux Institute', 'College of Professional Studies (CPS)');
+  }
 
   for (const group of COLLEGE_GROUPS) {
-    if (group.matches(normalizedValue)) {
-      return group.label;
+    if (group.matches(normalizedValue) && !groups.includes(group.label)) {
+      groups.push(group.label);
     }
   }
 
-  return college.trim();
+  if (groups.length > 0) {
+    return groups;
+  }
+
+  return [college.trim()];
+};
+
+export const normalizeCollege = (college = '') => {
+  const groups = getCollegeGroups(college);
+  return groups[0] || college.trim();
 };

@@ -74,6 +74,9 @@ const InsightsGrid = ({
           <div className="insight-title">
             <div className="insight-icon">🌐</div>
             Campus Network Distribution
+            <div className="filter-hint">
+              Legend filters remove locations from this pie chart only, not from the Innovation Project Database below.
+            </div>
           </div>
         </div>
         <div className="insight-body">
