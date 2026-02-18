@@ -130,7 +130,7 @@ const Dashboard = () => {
     'Campus Operations': new Set([
       'The Neurodiversity Initiative',
       'Graduate Leadership Institute-Seattle Campus',
-      'The Evolving Skills Landscape in the Age of AI: Regional Employers Focus Groups',
+      'The Evolving Skills Landscape in the Age of AI',
       'SIG (Student Interest Group) Leader Training Module',
       'Align Online',
       'PAWsome Connections Mixer Networking Event',
@@ -164,7 +164,7 @@ const Dashboard = () => {
     'Cross-Campus Initiatives': new Set([
       'The Neurodiversity Initiative',
       'Writing Creatively in the Age of AI',
-      'The Evolving Skills Landscape in the Age of AI: Regional Employers Focus Groups',
+      'The Evolving Skills Landscape in the Age of AI',
       'Undergraduate Research Badging Program',
       'Impact Project',
       'Proposed Global Urban Studies Major/Minor',
