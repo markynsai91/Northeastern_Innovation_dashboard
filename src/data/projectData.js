@@ -280,7 +280,7 @@ export const dashboardData = {
     {
       title: "The Evolving Skills Landscape in the Age of AI: Regional Employers Focus Groups",
       college: "",
-      campus: "Silicon Valley",
+      campus: "Silicon Valley, Seattle",
       duration: "1-2 years",
       reach: "26-100",
       dataStatus: "Yes - qualitative data",
@@ -1799,8 +1799,8 @@ export const dashboardData = {
       qualitative: {
         primary_contact_name: "Aileen Huang-Saad",
         primary_contact_email: "a.huang-saad@northeastern.edu",
-        secondary_contact_name: "Jennifer Fitz",
-        secondary_contact_email: "j.fitz@northeastern.edu",
+        secondary_contact_name: "Jennifer Fitz (j.fitz@northeastern.edu); Aileen Huang-Saad (a.huang-saad@northeastern.edu); Elena Brondolo (e.brondolo@northeastern.edu); Moriah Folsom (mo.folsom@northeastern.edu); Elena Coronad (e.coronado@northeastern.edu)",
+        secondary_contact_email: "",
         description: "With the launch of the Roux Institute, there was a need for access to wet lab space as the campus transitions to a permanent space. By creating a partnership with the University of Southern Maine, we were able to leverage external funding to establish a functioning wet lab space for both teaching and economic development.  The space, BioPilot/BioColab serves as a shared teaching and learning space that lowers the barrier for life science companies to start up and thrive in Maine by leveraging alternative ways to utilize Academic Space. Life Science companies can partner with BioPILOT to access wet lab space, equipment, faculty and staff expertise, and student talent to prototype and translate early stage life science innovations.",
         problem_opportunity: "High cost to set up and maintain a wet lab, and few spaces that will lease this type of resource. At the time of inception, there was no dedicated NU wet lab space for teaching nor was there a biotech incubator in the state of Maine.",
         challenges: "Space constraints, limited equipment",

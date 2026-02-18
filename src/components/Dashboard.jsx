@@ -331,9 +331,17 @@ const Dashboard = () => {
         project.campus.toLowerCase().includes(search.toLowerCase());
 
       // Campus filter
+      const normalizedProjectCampus = normalizeCampus(project.campus);
+      const normalizedSelectedCampus = normalizeCampus(campus);
+      const projectCampusLower = normalizedProjectCampus.toLowerCase();
+      const selectedCampusLower = normalizedSelectedCampus.toLowerCase();
+      const selectedCampusBase = selectedCampusLower.split(',')[0].trim();
+
       const matchesCampus =
         campus === 'all' ||
-        normalizeCampus(project.campus) === normalizeCampus(campus);
+        normalizedProjectCampus === normalizedSelectedCampus ||
+        projectCampusLower.includes(selectedCampusLower) ||
+        (selectedCampusBase && projectCampusLower.includes(selectedCampusBase));
 
       // College filter
       const matchesCollege = college === 'all' || getCollegeGroups(project.college).includes(college);
