@@ -60,12 +60,21 @@ const COLLEGE_GROUPS = [
       value.includes('career development & experiential learning')
   },
   {
+    label: 'Partnerships',
+    matches: (value) =>
+      value === 'partnerships' ||
+      value.includes('charlotte campus')
+  },
+  {
     label: 'Student Affairs',
     matches: (value) =>
       value.includes('student affairs') ||
       value.includes('oakland student life') ||
       value.includes('student services') ||
-      value.includes('network student life')
+      value.includes('network student life') ||
+      value.includes('academic advising') ||
+      value.includes('global learner support') ||
+      value.includes('london / belonging')
   },
   {
     label: 'Computing, Mathematics, Engineering, and Natural Sciences (CoMENS)',
@@ -88,6 +97,12 @@ const isRouxCustomLearningNonDegreeCps = (value) =>
   value.includes('non-degree') &&
   value.includes('college of professional studies (cps)');
 
+const PROJECT_COLLEGE_FILTER_OVERRIDES = {
+  'experiential learning insights (e.l.i) dashboard': ['Student Affairs'],
+  'partner hub: connecting industry and academia': ['Partnerships'],
+  'embedded partners program': ['Partnerships']
+};
+
 export const getCollegeGroups = (college = '') => {
   const normalizedValue = college.trim().toLowerCase();
   const groups = [];
@@ -107,6 +122,17 @@ export const getCollegeGroups = (college = '') => {
   }
 
   return [college.trim()];
+};
+
+export const getCollegeGroupsForProject = (project = {}) => {
+  const normalizedTitle = (project.title || '').trim().toLowerCase();
+  const overrideGroups = PROJECT_COLLEGE_FILTER_OVERRIDES[normalizedTitle];
+
+  if (overrideGroups && overrideGroups.length > 0) {
+    return overrideGroups;
+  }
+
+  return getCollegeGroups(project.college || '');
 };
 
 export const normalizeCollege = (college = '') => {

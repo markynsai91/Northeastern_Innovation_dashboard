@@ -7,7 +7,7 @@ import InsightsGrid from './InsightsGrid';
 import InsightsHub from './InsightsHub';
 import Controls from './Controls';
 import ProjectTable from './ProjectTable';
-import { getCollegeGroups } from '../utils/collegeGrouping';
+import { getCollegeGroupsForProject } from '../utils/collegeGrouping';
 import { normalizeCampus } from '../utils/campusNormalization';
 import '../styles/Dashboard.css';
 
@@ -344,7 +344,7 @@ const Dashboard = () => {
         (selectedCampusBase && projectCampusLower.includes(selectedCampusBase));
 
       // College filter
-      const matchesCollege = college === 'all' || getCollegeGroups(project.college).includes(college);
+      const matchesCollege = college === 'all' || getCollegeGroupsForProject(project).includes(college);
 
       // Stage filter (maturity)
       let matchesStage = stage === 'all';
