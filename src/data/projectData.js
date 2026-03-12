@@ -96,8 +96,8 @@ export const dashboardData = {
       reach: "26-100",
       dataStatus: "Yes - both quantitative and qualitative",
       qualitative: {
-        primary_contact_name: "Pedro Gomes",
-        primary_contact_email: "p.gomes@northeastern.edu",
+        primary_contact_name: "Maria Alonso",
+        primary_contact_email: "m.alonso@northeastern.edu",
         secondary_contact_name: "",
         secondary_contact_email: "",
         description: "Miami Innovation Academy (MIA) is a 7-week, immersive fellowship program designed to accelerate the growth of 25-30 of the most promising early-stage Miami startups. Our mission is to provide founders with the resources, mentorship, and network necessary to scale their ventures from seed to Series A. Over its two years in the market, over 50 startups have participated in MIA which collectively have raised over $160M.",
@@ -123,8 +123,8 @@ export const dashboardData = {
       reach: "26-100",
       dataStatus: "Yes - both quantitative and qualitative",
       qualitative: {
-        primary_contact_name: "Pedro Gomes",
-        primary_contact_email: "p.gomes@northeastern.edu",
+        primary_contact_name: "Maria Alonso",
+        primary_contact_email: "m.alonso@northeastern.edu",
         secondary_contact_name: "",
         secondary_contact_email: "",
         description: "Our Entrepreneurship Trek is a one-week, immersive program that combines classroom learning with field study excursions to local startup companies in a variety of tech sectors. Local founders and ecosystem leaders participate in the program, also sharing their experiences and key learnings. Taking part in a trek will allow you to join like-minded peers from across the country in exploring the expansive entrepreneurial ecosystem of Miami.",
@@ -150,8 +150,8 @@ export const dashboardData = {
       reach: "101-500",
       dataStatus: "No, but data collection is planned",
       qualitative: {
-        primary_contact_name: "Pedro Gomes",
-        primary_contact_email: "p.gomes@northeastern.edu",
+        primary_contact_name: "Maria Alonso",
+        primary_contact_email: "m.alonso@northeastern.edu",
         secondary_contact_name: "",
         secondary_contact_email: "",
         description: "A one-day innovation workshop tailored for local founders and small business owners and operators.",
