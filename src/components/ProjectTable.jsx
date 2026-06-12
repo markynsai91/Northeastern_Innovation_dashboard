@@ -1,40 +1,128 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 const ProjectTable = ({ data, getProjectStage }) => {
   const [expandedRows, setExpandedRows] = useState(new Set());
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  // Toggle row expansion
-  const toggleRowExpansion = (projectIndex) => {
-    const newExpanded = new Set(expandedRows);
-    if (newExpanded.has(projectIndex)) {
-      newExpanded.delete(projectIndex);
-    } else {
-      newExpanded.add(projectIndex);
+  const projects = data?.projects || [];
+  const totalProjects = projects.length;
+  const totalPages = Math.max(1, Math.ceil(totalProjects / rowsPerPage));
+
+  useEffect(() => {
+    setCurrentPage(1);
+    setExpandedRows(new Set());
+  }, [totalProjects]);
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+      setExpandedRows(new Set());
     }
-    setExpandedRows(newExpanded);
-  };
+  }, [currentPage, totalPages]);
 
-  // Format contact information
-  const formatContact = (name, email) => {
+  const paginatedProjects = useMemo(() => {
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+
+    return projects.slice(startIndex, endIndex);
+  }, [projects, currentPage, rowsPerPage]);
+
+  const startItem = totalProjects === 0 ? 0 : (currentPage - 1) * rowsPerPage + 1;
+  const endItem = Math.min(currentPage * rowsPerPage, totalProjects);
+
+  function handleRowsPerPageChange(event) {
+    setRowsPerPage(Number(event.target.value));
+    setCurrentPage(1);
+    setExpandedRows(new Set());
+  }
+
+  function handlePageChange(newPage) {
+    const nextPage = Math.min(Math.max(newPage, 1), totalPages);
+    setCurrentPage(nextPage);
+    setExpandedRows(new Set());
+  }
+
+  function getProjectKey(project, index) {
+    return project.id || project.project_id || `${project.title}-${index}`;
+  }
+
+  function toggleRowExpansion(projectKey) {
+    const newExpanded = new Set(expandedRows);
+
+    if (newExpanded.has(projectKey)) {
+      newExpanded.delete(projectKey);
+    } else {
+      newExpanded.add(projectKey);
+    }
+
+    setExpandedRows(newExpanded);
+  }
+
+  function formatContact(name, email) {
     if (!name && !email) return '-';
     if (name && email) return `${name} (${email})`;
     if (email) return email;
     return name;
-  };
+  }
 
-  // Get data status display class
-  const getDataStatusClass = (status) => {
-    if (status.includes('both')) return 'status-both';
-    if (status.includes('quantitative')) return 'status-quantitative';
-    if (status.includes('qualitative')) return 'status-qualitative';
-    if (status.includes('planned')) return 'status-planned';
+  function getDataStatusClass(status = '') {
+    const normalizedStatus = String(status).toLowerCase();
+
+    if (normalizedStatus.includes('both')) return 'status-both';
+    if (normalizedStatus.includes('quantitative')) return 'status-quantitative';
+    if (normalizedStatus.includes('qualitative')) return 'status-qualitative';
+    if (normalizedStatus.includes('planned')) return 'status-planned';
+
     return 'status-none';
-  };
+  }
 
-  // Get stage display class
-  const getStageClass = (stage) => {
-    return `stage-${stage.toLowerCase()}`;
-  };
+  function getStageClass(stage = '') {
+    return `stage-${String(stage).toLowerCase()}`;
+  }
+
+  function PaginationControls() {
+    return (
+      <div className="pagination-container">
+        <div className="pagination-summary">
+          Showing {startItem}–{endItem} of {totalProjects} projects
+        </div>
+
+        <div className="pagination-controls">
+          <label className="pagination-page-size">
+            Rows per page:
+            <select value={rowsPerPage} onChange={handleRowsPerPageChange}>
+              <option value={10}>10</option>
+              <option value={25}>25</option>
+              <option value={50}>50</option>
+            </select>
+          </label>
+
+          <button
+            type="button"
+            className="button-neutral"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage <= 1}
+          >
+            Previous
+          </button>
+
+          <span className="pagination-page-count">
+            Page {currentPage} of {totalPages}
+          </span>
+
+          <button
+            type="button"
+            className="button-neutral"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage >= totalPages}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section className="table-section">
@@ -44,6 +132,8 @@ const ProjectTable = ({ data, getProjectStage }) => {
           Comprehensive portfolio view with detailed project information
         </div>
       </div>
+
+      {totalProjects > 0 && <PaginationControls />}
 
       <div className="table-container">
         <table className="project-table">
@@ -58,63 +148,65 @@ const ProjectTable = ({ data, getProjectStage }) => {
               <th className="data-col">Data Status</th>
             </tr>
           </thead>
+
           <tbody>
-            {data.projects.length === 0 ? (
+            {totalProjects === 0 ? (
               <tr>
                 <td colSpan="7" className="no-results">
                   No projects match current filters
                 </td>
               </tr>
             ) : (
-              data.projects.map((project, index) => {
-                const isExpanded = expandedRows.has(index);
+              paginatedProjects.map((project, index) => {
+                const projectKey = getProjectKey(project, index);
+                const isExpanded = expandedRows.has(projectKey);
                 const stage = getProjectStage(project);
-                
+
                 return (
-                  <React.Fragment key={index}>
-                    {/* Main project row */}
-                    <tr 
+                  <React.Fragment key={projectKey}>
+                    <tr
                       className={`project-row ${isExpanded ? 'expanded' : ''}`}
-                      onClick={() => toggleRowExpansion(index)}
+                      onClick={() => toggleRowExpansion(projectKey)}
                     >
                       <td className="expand-col">
-                        <button 
+                        <button
                           className={`expand-btn ${isExpanded ? 'expanded' : ''}`}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleRowExpansion(index);
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            toggleRowExpansion(projectKey);
                           }}
                           aria-label={isExpanded ? 'Collapse details' : 'Expand details'}
                         >
                           {isExpanded ? '−' : '+'}
                         </button>
                       </td>
-                      
+
                       <td className="title-col">
                         <div className="project-title">{project.title}</div>
                       </td>
-                      
+
                       <td className="college-col">
                         <div className="college-name">{project.college}</div>
                       </td>
-                      
+
                       <td className="campus-col">
                         <div className="campus-name">{project.campus}</div>
                       </td>
-                      
+
                       <td className="stage-col">
                         <span className={`stage-badge ${getStageClass(stage)}`}>
-                          {stage === 'Emerging' && '🌱'} 
-                          {stage === 'Growing' && '📈'} 
-                          {stage === 'Mature' && '🏛️'} 
+                          {stage === 'Emerging' && '🌱'}
+                          {stage === 'Growing' && '📈'}
+                          {stage === 'Mature' && '🏛️'}
+                          {' '}
                           {stage}
                         </span>
                       </td>
-                      
+
                       <td className="reach-col">
                         <div className="reach-value">{project.reach}</div>
                       </td>
-                      
+
                       <td className="data-col">
                         <span className={`data-status ${getDataStatusClass(project.dataStatus)}`}>
                           {project.dataStatus}
@@ -122,102 +214,123 @@ const ProjectTable = ({ data, getProjectStage }) => {
                       </td>
                     </tr>
 
-                    {/* Expanded details row */}
                     {isExpanded && (
                       <tr className="details-row">
                         <td colSpan="7">
                           <div className="project-details">
-                            
-                            {/* Basic Information */}
                             <div className="details-section">
                               <h4 className="details-title">Project Overview</h4>
+
                               <div className="details-grid">
                                 <div className="detail-item">
                                   <span className="detail-label">Duration:</span>
                                   <span className="detail-value">{project.duration}</span>
                                 </div>
+
                                 <div className="detail-item">
                                   <span className="detail-label">Current Reach:</span>
                                   <span className="detail-value">{project.reach} people</span>
                                 </div>
+
                                 <div className="detail-item">
                                   <span className="detail-label">Data Collection:</span>
                                   <span className="detail-value">{project.dataStatus}</span>
                                 </div>
                               </div>
-                              
-                              {project.qualitative.description && (
+
+                              {project.qualitative?.description && (
                                 <div className="description-section">
                                   <span className="detail-label">Description:</span>
-                                  <p className="project-description">{project.qualitative.description}</p>
+                                  <p className="project-description">
+                                    {project.qualitative.description}
+                                  </p>
                                 </div>
                               )}
                             </div>
 
-                            {/* Qualitative Insights */}
                             <div className="details-section">
                               <h4 className="details-title">Innovation Insights</h4>
-                              
-                              {project.qualitative.challenges && (
+
+                              {project.qualitative?.challenges && (
                                 <div className="insight-item">
                                   <span className="insight-label">Key Challenges:</span>
                                   <p className="insight-text">{project.qualitative.challenges}</p>
                                 </div>
                               )}
-                              
-                              {project.qualitative.impact && (
+
+                              {project.qualitative?.impact && (
                                 <div className="insight-item">
                                   <span className="insight-label">Impact Achieved:</span>
                                   <p className="insight-text">{project.qualitative.impact}</p>
                                 </div>
                               )}
-                              
-                              {project.qualitative.lessons_learned && (
+
+                              {project.qualitative?.lessons_learned && (
                                 <div className="insight-item">
                                   <span className="insight-label">Lessons Learned:</span>
-                                  <p className="insight-text">{project.qualitative.lessons_learned}</p>
+                                  <p className="insight-text">
+                                    {project.qualitative.lessons_learned}
+                                  </p>
                                 </div>
                               )}
-                              
-                              {project.qualitative.recognition && project.qualitative.recognition !== 'No' && project.qualitative.recognition !== 'Not yet' && (
-                                <div className="insight-item">
-                                  <span className="insight-label">Recognition & Awards:</span>
-                                  <p className="insight-text">{project.qualitative.recognition}</p>
-                                </div>
-                              )}
+
+                              {project.qualitative?.recognition &&
+                                project.qualitative.recognition !== 'No' &&
+                                project.qualitative.recognition !== 'Not yet' && (
+                                  <div className="insight-item">
+                                    <span className="insight-label">
+                                      Recognition & Awards:
+                                    </span>
+                                    <p className="insight-text">
+                                      {project.qualitative.recognition}
+                                    </p>
+                                  </div>
+                                )}
                             </div>
 
-                            {project.qualitative.partners && (
+                            {project.qualitative?.partners && (
                               <div className="details-section">
                                 <div className="insight-item">
-                                  <span className="insight-label">Partners and Stakeholders:</span>
-                                  <p className="insight-text">{project.qualitative.partners}</p>
+                                  <span className="insight-label">
+                                    Partners and Stakeholders:
+                                  </span>
+                                  <p className="insight-text">
+                                    {project.qualitative.partners}
+                                  </p>
                                 </div>
                               </div>
                             )}
 
-                            {/* Contact Information */}
                             <div className="details-section contacts-section">
                               <h4 className="details-title">Project Contacts</h4>
+
                               <div className="contacts-grid">
                                 <div className="contact-item">
                                   <span className="contact-label">Primary Contact:</span>
                                   <span className="contact-info">
-                                    {formatContact(project.qualitative.primary_contact_name, project.qualitative.primary_contact_email)}
+                                    {formatContact(
+                                      project.qualitative?.primary_contact_name,
+                                      project.qualitative?.primary_contact_email
+                                    )}
                                   </span>
                                 </div>
-                                
-                                {(project.qualitative.secondary_contact_name || project.qualitative.secondary_contact_email) && (
+
+                                {(project.qualitative?.secondary_contact_name ||
+                                  project.qualitative?.secondary_contact_email) && (
                                   <div className="contact-item">
-                                    <span className="contact-label">Secondary Contact:</span>
+                                    <span className="contact-label">
+                                      Secondary Contact:
+                                    </span>
                                     <span className="contact-info">
-                                      {formatContact(project.qualitative.secondary_contact_name, project.qualitative.secondary_contact_email)}
+                                      {formatContact(
+                                        project.qualitative?.secondary_contact_name,
+                                        project.qualitative?.secondary_contact_email
+                                      )}
                                     </span>
                                   </div>
                                 )}
                               </div>
                             </div>
-
                           </div>
                         </td>
                       </tr>
@@ -230,11 +343,13 @@ const ProjectTable = ({ data, getProjectStage }) => {
         </table>
       </div>
 
-      {/* Table Footer */}
+      {totalProjects > 0 && <PaginationControls />}
+
       <div className="table-footer">
         <div className="table-stats">
-          Displaying {data.projects.length} innovation projects
+          Displaying {startItem}–{endItem} of {totalProjects} innovation projects
         </div>
+
         <div className="table-legend">
           <span className="legend-item">
             <span className="stage-badge stage-emerging">🌱 Emerging</span>
