@@ -93,6 +93,47 @@ Target Audience: ${formatValue(submission.target_audience)}
 `;
 }
 
+function isEditSubmission(submission) {
+  return (
+    submission?.submission_type === 'edit_existing_project' ||
+    submission?.submission_type === 'Edit Existing Project' ||
+    submission?.submission_type === 'Edit Request'
+  );
+}
+
+function buildSubmittedEditDetails(submission) {
+  const editFields = [
+    { label: 'Project Title', value: submission.project_title },
+    { label: 'College / Department', value: submission.college_department },
+    { label: 'Campus', value: submission.campus },
+    { label: 'Duration', value: submission.duration },
+    { label: 'Reach', value: submission.reach },
+    { label: 'Data Status', value: submission.data_status },
+    { label: 'Data Collection Type', value: submission.data_collection_type },
+    { label: 'Maturity Stage', value: submission.maturity_stage },
+    { label: 'Primary Contact Name', value: submission.primary_contact_name },
+    { label: 'Primary Contact Email', value: submission.primary_contact_email },
+    { label: 'Secondary Contact Name', value: submission.secondary_contact_name },
+    { label: 'Secondary Contact Email', value: submission.secondary_contact_email },
+    { label: 'Description', value: submission.description },
+    { label: 'Problem / Opportunity', value: submission.problem_opportunity },
+    { label: 'Challenges', value: submission.challenges },
+    { label: 'Impact', value: submission.impact },
+    { label: 'Lessons Learned', value: submission.lessons_learned },
+    { label: 'Awards / Recognition', value: submission.awards_recognition },
+    { label: 'Partners and Stakeholders', value: submission.partners_and_stakeholders },
+    { label: 'Target Audience', value: submission.target_audience },
+  ].filter((field) => hasProposedValue(field.value));
+
+  if (!editFields.length) {
+    return 'No specific edit field values were provided.';
+  }
+
+  return editFields
+    .map((field) => `- ${field.label}: ${field.value}`)
+    .join('\n');
+}
+
 function buildEmailBody({
   decisionType,
   submitterName,
@@ -104,11 +145,42 @@ function buildEmailBody({
   const name = submitterName || 'Submitter';
   const title = projectTitle || 'your project submission';
   const projectIdText = projectId || 'Not assigned';
+  const isEditRequest = submission ? isEditSubmission(submission) : false;
+  const reasonForEdit = submission?.reason_for_submission || 'Not provided';
+
   const submittedProjectDetails = submission
     ? buildSubmittedProjectDetails(submission)
     : '';
 
+  const submittedEditDetails = submission
+    ? buildSubmittedEditDetails(submission)
+    : 'No specific edit field values were provided.';
+
   if (decisionType === 'Approved') {
+    if (isEditRequest) {
+      return `Hi ${name},
+
+Your Innovation Dashboard edit request has been approved.
+
+Project Title: ${title}
+Project ID: ${projectIdText}
+Submission ID: ${formatValue(submission?.submission_id)}
+
+Reason for Edit:
+${reasonForEdit}
+
+Submitted Edit Details:
+${submittedEditDetails}
+
+Reviewer Comment:
+${reviewerComment || 'Approved.'}
+
+The approved changes will be reflected in the Innovation Dashboard.
+
+Best,
+Innovation Dashboard Team`;
+    }
+
     return `Hi ${name},
 
 Your Innovation Dashboard submission has been approved.
@@ -123,6 +195,30 @@ Innovation Dashboard Team`;
   }
 
   if (decisionType === 'Rejected') {
+    if (isEditRequest) {
+      return `Hi ${name},
+
+Thank you for submitting an edit request for the Innovation Dashboard.
+
+After review, the edit request has not been approved at this time.
+
+Project Title: ${title}
+Project ID: ${projectIdText}
+Submission ID: ${formatValue(submission?.submission_id)}
+
+Reason for Edit:
+${reasonForEdit}
+
+Submitted Edit Details:
+${submittedEditDetails}
+
+Reviewer Comment:
+${reviewerComment || 'No additional comment provided.'}
+
+Best,
+Innovation Dashboard Team`;
+    }
+
     return `Hi ${name},
 
 Thank you for submitting your project to the Innovation Dashboard.
@@ -143,6 +239,32 @@ Innovation Dashboard Team`;
   }
 
   if (decisionType === 'Changes Requested') {
+    if (isEditRequest) {
+      return `Hi ${name},
+
+Thank you for submitting an edit request for the Innovation Dashboard.
+
+The reviewer has requested changes or additional information before the edit request can move forward.
+
+Project Title: ${title}
+Project ID: ${projectIdText}
+Submission ID: ${formatValue(submission?.submission_id)}
+
+Reason for Edit:
+${reasonForEdit}
+
+Submitted Edit Details:
+${submittedEditDetails}
+
+Requested Changes:
+${reviewerComment || 'No additional comment provided.'}
+
+Please review the requested changes and update your submission.
+
+Best,
+Innovation Dashboard Team`;
+    }
+
     return `Hi ${name},
 
 Thank you for submitting your project to the Innovation Dashboard.
