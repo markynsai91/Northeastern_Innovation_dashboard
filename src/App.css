@@ -14,3 +14,21 @@
 }
 
 /* Additional app-level styles can go here */
+
+.pagination-page-size select {
+
+  min-width: 64px;
+
+  width: auto;
+
+  padding: 6px 28px 6px 10px;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  color: #111827;
+
+  background-color: #ffffff;
+
+}
