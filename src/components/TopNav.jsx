@@ -4,30 +4,31 @@ import '../styles/Reviewer.css';
 function TopNav() {
   const currentPath = window.location.pathname;
 
+  const getReviewerAdminLoginStatus = () => {
+    return (
+      localStorage.getItem('innovation_dashboard_review_admin_login') === 'true'
+    );
+  };
+
   const [isReviewerAdminLoggedIn, setIsReviewerAdminLoggedIn] = useState(
-    localStorage.getItem('innovation_dashboard_review_admin_login') === 'true'
+    getReviewerAdminLoginStatus()
   );
 
   useEffect(() => {
     function updateLoginStatus() {
-      setIsReviewerAdminLoggedIn(
-        localStorage.getItem('innovation_dashboard_review_admin_login') ===
-          'true'
-      );
+      setIsReviewerAdminLoggedIn(getReviewerAdminLoginStatus());
     }
 
     updateLoginStatus();
 
-    window.addEventListener(
-      'reviewerAdminLoginChanged',
-      updateLoginStatus
-    );
+    window.addEventListener('reviewerAdminLoginChanged', updateLoginStatus);
+    window.addEventListener('storage', updateLoginStatus);
+    window.addEventListener('focus', updateLoginStatus);
 
     return () => {
-      window.removeEventListener(
-        'reviewerAdminLoginChanged',
-        updateLoginStatus
-      );
+      window.removeEventListener('reviewerAdminLoginChanged', updateLoginStatus);
+      window.removeEventListener('storage', updateLoginStatus);
+      window.removeEventListener('focus', updateLoginStatus);
     };
   }, []);
 
