@@ -358,10 +358,7 @@ const SupabaseDashboard = () => {
     if (!includeSet) return false;
     return includeSet.has(project.title.toLowerCase());
   };
-  // For the Supabase preview, do not rely on old static project-title include lists.
-  // The original dashboard data used fixed titles, but Supabase submissions have new titles.
-  // Strategic Focus Areas should therefore be calculated from the full project content.
-  const themeHasIncludeList = () => false;
+  const themeHasIncludeList = (theme) => Boolean(themeIncludedTitles[theme]);
 
   // Filter projects based on active filters
   const applyFilters = () => {
@@ -414,22 +411,7 @@ const SupabaseDashboard = () => {
         } else {
           const themeKeywords = getThemeKeywords();
           if (themeKeywords[theme]) {
-            const text = [
-              project.title,
-              project.college,
-              project.campus,
-              project.qualitative?.description,
-              project.qualitative?.problem_opportunity,
-              project.qualitative?.challenges,
-              project.qualitative?.impact,
-              project.qualitative?.partners,
-              project.qualitative?.target_audience,
-              project.qualitative?.recognition
-            ]
-              .filter(Boolean)
-              .join(' ')
-              .toLowerCase();
-
+            const text = (project.title + ' ' + project.college).toLowerCase();
             matchesTheme = themeKeywords[theme].some(keyword => 
               text.includes(keyword.toLowerCase())
             );

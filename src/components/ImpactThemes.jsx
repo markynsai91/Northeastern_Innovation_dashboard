@@ -1,79 +1,114 @@
 import React, { useEffect, useRef } from 'react';
 
-const ImpactThemes = ({ 
-  data, 
-  onQualitativeThemeFilter, 
-  activeQualitativeTheme, 
-  getQualitativeKeywords 
+const ImpactThemes = ({
+  data,
+  onQualitativeThemeFilter,
+  activeQualitativeTheme,
+  getQualitativeKeywords
 }) => {
   const containerRef = useRef(null);
-  const excludedTitlesByTheme = {
-    'Research Advancement': new Set([
-      'Graduate Leadership Institute-Seattle Campus',
-      'Case Study Simulation Program',
-      'Redevelopment and Expansion of EESC3000 – Values, Ethics, and Professionalism in the Sciences',
-      'Impact Project',
-      'Student Leadership Development (Student Interest Groups & Graduate Leadership Institute) - Toronto Campus',
-      'Behavior-Changing Workplace Learning',
-      'Campfire Chats',
-      'MaineSeq',
-      'Pre-Arrival Career Development Program'
-    ].map(title => title.toLowerCase()))
-  };
-  const includedTitlesByTheme = {
-    'Operational Efficiency': new Set([
-      'Seattle Campus Innovative Spaces',
-      'Integration of UG curriculum to PlusOne',
-      'Embedded Partners Program',
-      'AI Coach',
-      'Media Studios Organization (MSO): A Centralized Creative Technology Ecosystem',
-      'Partner Hub: Connecting Industry and Academia',
-      'InStage AI Reflection Tool for Co-op',
-      'Use of Airtable and Airtable AI for Operational Effiency at Scale',
-      'Embedded Partner Ecosystem - Vancouver Campus.',
-      'Graduate Student Advising Model: Graduate Faculty Advisor/Program Director Training / Faculty Advisor Use of Navigate'
-    ].map(title => title.toLowerCase()))
+
+  const normalizeArray = (value) => {
+    if (Array.isArray(value)) {
+      return value.map((item) => String(item).trim()).filter(Boolean);
+    }
+
+    if (!value) return [];
+
+    if (typeof value === 'string') {
+      return value
+        .replace(/^\{/, '')
+        .replace(/\}$/, '')
+        .split(',')
+        .map((item) => item.replace(/^"|"$/g, '').trim())
+        .filter(Boolean);
+    }
+
+    return [];
   };
 
-  // Create impact themes analysis with dynamic counting
+  const getStoredImpactThemes = (project) => {
+    return [
+      ...normalizeArray(project.impact_themes),
+      ...normalizeArray(project.impactThemes),
+      ...normalizeArray(project.raw_supabase_project?.impact_themes),
+      ...normalizeArray(project.raw_supabase_project?.impactThemes)
+    ];
+  };
+
+  const hasStoredImpactField = (project) => {
+    return (
+      Object.prototype.hasOwnProperty.call(project, 'impact_themes') ||
+      Object.prototype.hasOwnProperty.call(project, 'impactThemes') ||
+      Object.prototype.hasOwnProperty.call(
+        project.raw_supabase_project || {},
+        'impact_themes'
+      )
+    );
+  };
+
+  const getImpactDescription = (theme) => {
+    const descriptions = {
+      'Student Success':
+        'Improved learning outcomes, retention, and student engagement',
+      'Operational Efficiency':
+        'Streamlined processes, automation, and productivity gains',
+      'Community Building':
+        'Stronger networks, connections, and collaborative partnerships',
+      'Research Advancement':
+        'Knowledge discovery, publications, and research findings'
+    };
+
+    return descriptions[theme] || 'Significant positive outcomes and transformational results';
+  };
+
   const createImpactThemes = () => {
     if (!containerRef.current) return;
 
     const container = containerRef.current;
     container.innerHTML = '';
 
-    const impactKeywords = getQualitativeKeywords().impact;
+    const impactKeywords = getQualitativeKeywords
+      ? getQualitativeKeywords().impact
+      : {
+          'Student Success': [],
+          'Operational Efficiency': [],
+          'Community Building': [],
+          'Research Advancement': []
+        };
+
     const impactCounts = {};
 
-    // Calculate counts using same filtering logic
-    Object.entries(impactKeywords).forEach(([theme, keywords]) => {
+    Object.keys(impactKeywords).forEach((theme) => {
       let count = 0;
-      data.projects.forEach(project => {
-        const includeSet = includedTitlesByTheme[theme];
-        if (includeSet && !includeSet.has(project.title.toLowerCase())) {
+
+      data.projects.forEach((project) => {
+        const storedImpactThemes = getStoredImpactThemes(project);
+
+        // For migrated Supabase records, use stored DB category arrays.
+        // Blank/null values intentionally remain uncategorized.
+        if (hasStoredImpactField(project)) {
+          if (storedImpactThemes.includes(theme)) {
+            count++;
+          }
           return;
         }
-        const excludeSet = excludedTitlesByTheme[theme];
-        if (excludeSet && excludeSet.has(project.title.toLowerCase())) {
-          return;
-        }
-        if (includeSet) {
-          count++;
-          return;
-        }
-        const text = (project.qualitative.challenges + ' ' + project.qualitative.impact).toLowerCase();
-        if (keywords.some(keyword => text.includes(keyword.toLowerCase()))) {
+
+        // Fallback only for older/static records.
+        const text = `${project.qualitative?.challenges || ''} ${project.qualitative?.impact || ''}`.toLowerCase();
+        const keywords = impactKeywords[theme] || [];
+
+        if (keywords.some((keyword) => text.includes(keyword.toLowerCase()))) {
           count++;
         }
       });
+
       if (count > 0) {
         impactCounts[theme] = count;
       }
     });
 
-    // Sort by frequency
-    const sortedImpacts = Object.entries(impactCounts)
-      .sort((a, b) => b[1] - a[1]);
+    const sortedImpacts = Object.entries(impactCounts).sort((a, b) => b[1] - a[1]);
 
     if (sortedImpacts.length === 0) {
       container.innerHTML = '<div class="no-data">No impact themes identified</div>';
@@ -83,10 +118,10 @@ const ImpactThemes = ({
     sortedImpacts.forEach(([theme, count]) => {
       const impactItem = document.createElement('div');
       impactItem.className = 'impact-item';
-      
-      // Check if this theme is active
-      const isActive = activeQualitativeTheme && 
-        activeQualitativeTheme.type === 'impact' && 
+
+      const isActive =
+        activeQualitativeTheme &&
+        activeQualitativeTheme.type === 'impact' &&
         activeQualitativeTheme.theme === theme;
 
       impactItem.innerHTML = `
@@ -99,14 +134,15 @@ const ImpactThemes = ({
         </div>
       `;
 
-      // Add click handler to the count number
       const countNumber = impactItem.querySelector('.impact-number');
+
       countNumber.addEventListener('click', () => {
-        const isActive = activeQualitativeTheme && 
-          activeQualitativeTheme.type === 'impact' && 
+        const currentlyActive =
+          activeQualitativeTheme &&
+          activeQualitativeTheme.type === 'impact' &&
           activeQualitativeTheme.theme === theme;
-          
-        if (isActive) {
+
+        if (currentlyActive) {
           onQualitativeThemeFilter(null, null);
         } else {
           onQualitativeThemeFilter('impact', theme);
@@ -115,17 +151,6 @@ const ImpactThemes = ({
 
       container.appendChild(impactItem);
     });
-  };
-
-  // Get description for impact theme - UPDATED to match actual theme names
-  const getImpactDescription = (theme) => {
-    const descriptions = {
-      'Student Success': 'Improved learning outcomes, retention, and student engagement',
-      'Operational Efficiency': 'Streamlined processes, automation, and productivity gains',
-      'Community Building': 'Stronger networks, connections, and collaborative partnerships',
-      'Research Advancement': 'Knowledge discovery, publications, and research findings'
-    };
-    return descriptions[theme] || 'Significant positive outcomes and transformational results';
   };
 
   useEffect(() => {

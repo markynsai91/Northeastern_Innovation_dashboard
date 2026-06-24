@@ -1,7 +1,35 @@
+import { useEffect, useState } from 'react';
 import '../styles/Reviewer.css';
 
 function TopNav() {
   const currentPath = window.location.pathname;
+
+  const [isReviewerAdminLoggedIn, setIsReviewerAdminLoggedIn] = useState(
+    localStorage.getItem('innovation_dashboard_review_admin_login') === 'true'
+  );
+
+  useEffect(() => {
+    function updateLoginStatus() {
+      setIsReviewerAdminLoggedIn(
+        localStorage.getItem('innovation_dashboard_review_admin_login') ===
+          'true'
+      );
+    }
+
+    updateLoginStatus();
+
+    window.addEventListener(
+      'reviewerAdminLoginChanged',
+      updateLoginStatus
+    );
+
+    return () => {
+      window.removeEventListener(
+        'reviewerAdminLoginChanged',
+        updateLoginStatus
+      );
+    };
+  }, []);
 
   function isActive(path) {
     if (path === '/' && currentPath === '/') return true;
@@ -25,20 +53,25 @@ function TopNav() {
       <div className="top-nav-brand">Innovation Dashboard</div>
 
       <div className="top-nav-links">
-        <a className={isActive('/') ? 'top-nav-link active' : 'top-nav-link'} href="/">
+        <a
+          className={isActive('/') ? 'top-nav-link active' : 'top-nav-link'}
+          href="/"
+        >
           Dashboard
         </a>
 
-        <a
-          className={
-            isActive('/supabase-dashboard')
-              ? 'top-nav-link active'
-              : 'top-nav-link'
-          }
-          href="/supabase-dashboard"
-        >
-          Supabase Test
-        </a>
+        {isReviewerAdminLoggedIn && (
+          <a
+            className={
+              isActive('/supabase-dashboard')
+                ? 'top-nav-link active'
+                : 'top-nav-link'
+            }
+            href="/supabase-dashboard"
+          >
+            Supabase Dashboard
+          </a>
+        )}
 
         <a
           className={

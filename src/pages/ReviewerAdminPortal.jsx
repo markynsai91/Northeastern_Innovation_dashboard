@@ -44,11 +44,16 @@ function ReviewerAdminPortal() {
     }
 
     if (data === true) {
-      localStorage.setItem('innovation_dashboard_review_admin_login', 'true');
-      setIsLoggedIn(true);
-      setAccessCode('');
-      setLoginError('');
-    } else {
+  localStorage.setItem('innovation_dashboard_review_admin_login', 'true');
+
+  window.dispatchEvent(
+    new Event('reviewerAdminLoginChanged')
+  );
+
+  setIsLoggedIn(true);
+  setAccessCode('');
+  setLoginError('');
+}else {
       setLoginError('Invalid access code. Please try again.');
     }
 

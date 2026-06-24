@@ -66,6 +66,12 @@ const ProjectTable = ({ data, getProjectStage }) => {
     return name;
   }
 
+  function formatArray(value) {
+    if (Array.isArray(value)) return value.filter(Boolean).join(', ');
+    if (!value) return '-';
+    return String(value);
+  }
+
   function getDataStatusClass(status = '') {
     const normalizedStatus = String(status).toLowerCase();
 
@@ -140,6 +146,7 @@ const ProjectTable = ({ data, getProjectStage }) => {
           <thead>
             <tr>
               <th className="expand-col"></th>
+              <th className="project-id-col">Project ID</th>
               <th className="title-col">Project Title</th>
               <th className="college-col">College/Department</th>
               <th className="campus-col">Campus</th>
@@ -152,7 +159,7 @@ const ProjectTable = ({ data, getProjectStage }) => {
           <tbody>
             {totalProjects === 0 ? (
               <tr>
-                <td colSpan="7" className="no-results">
+                <td colSpan="8" className="no-results">
                   No projects match current filters
                 </td>
               </tr>
@@ -179,6 +186,12 @@ const ProjectTable = ({ data, getProjectStage }) => {
                         >
                           {isExpanded ? '−' : '+'}
                         </button>
+                      </td>
+
+                      <td className="project-id-col">
+                        <div className="project-id-value">
+                          {project.project_id || '-'}
+                        </div>
                       </td>
 
                       <td className="title-col">
@@ -216,26 +229,37 @@ const ProjectTable = ({ data, getProjectStage }) => {
 
                     {isExpanded && (
                       <tr className="details-row">
-                        <td colSpan="7">
+                        <td colSpan="8">
                           <div className="project-details">
                             <div className="details-section">
                               <h4 className="details-title">Project Overview</h4>
 
                               <div className="details-grid">
                                 <div className="detail-item">
+                                  <span className="detail-label">Project ID:</span>
+                                  <span className="detail-value">{project.project_id || '-'}</span>
+                                </div>
+
+                                <div className="detail-item">
                                   <span className="detail-label">Duration:</span>
-                                  <span className="detail-value">{project.duration}</span>
+                                  <span className="detail-value">{project.duration || '-'}</span>
                                 </div>
 
                                 <div className="detail-item">
                                   <span className="detail-label">Current Reach:</span>
-                                  <span className="detail-value">{project.reach} people</span>
+                                  <span className="detail-value">{project.reach || '-'} people</span>
                                 </div>
 
                                 <div className="detail-item">
                                   <span className="detail-label">Data Collection:</span>
-                                  <span className="detail-value">{project.dataStatus}</span>
+                                  <span className="detail-value">{project.dataStatus || '-'}</span>
                                 </div>
+
+                               
+
+                                
+
+                                
                               </div>
 
                               {project.qualitative?.description && (

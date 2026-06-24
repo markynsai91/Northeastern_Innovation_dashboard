@@ -959,3 +959,67 @@ body {
     text-align: left;
   }
 }
+
+/* Fix Project Table pagination overflow */
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.pagination-page-size {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.pagination-page-size select {
+  max-width: 72px;
+}
+
+.pagination-page-count {
+  white-space: nowrap;
+}
+
+.button-neutral {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.project-table {
+  width: 100%;
+  table-layout: auto;
+}
+
+@media (max-width: 768px) {
+  .pagination-container {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .pagination-controls {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
