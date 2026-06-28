@@ -72,6 +72,15 @@ export function mapSupabaseProjectToDashboardProject(project) {
     reach: cleanValue(project.reach, 'Not specified'),
     dataStatus: mapDataStatus(project),
 
+    // Support both old and new field naming conventions
+    strategic_focus_areas: cleanValue(project.strategic_focus_areas),
+    common_challenges: cleanValue(project.common_challenges),
+    impact_themes: cleanValue(project.impact_themes),
+
+    strategicFocusAreas: cleanValue(project.strategic_focus_areas),
+    commonChallenges: cleanValue(project.common_challenges),
+    impactThemes: cleanValue(project.impact_themes),
+
     qualitative: {
       primary_contact_name: cleanValue(project.primary_contact_name),
       primary_contact_email: cleanValue(project.primary_contact_email),
@@ -88,6 +97,14 @@ export function mapSupabaseProjectToDashboardProject(project) {
       innovation_type: cleanValue(project.innovation_type),
       target_audience: cleanValue(project.target_audience),
       partners: cleanValue(project.partners_and_stakeholders),
+
+      strategic_focus_areas: cleanValue(project.strategic_focus_areas),
+      common_challenges: cleanValue(project.common_challenges),
+      impact_themes: cleanValue(project.impact_themes),
+
+      strategicFocusAreas: cleanValue(project.strategic_focus_areas),
+      commonChallenges: cleanValue(project.common_challenges),
+      impactThemes: cleanValue(project.impact_themes),
 
       evaluation_methods: cleanValue(project.evaluation_methods),
       data_results: cleanValue(project.data_results),

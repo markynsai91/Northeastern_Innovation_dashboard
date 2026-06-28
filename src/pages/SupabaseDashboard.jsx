@@ -360,6 +360,36 @@ const SupabaseDashboard = () => {
   };
   const themeHasIncludeList = (theme) => Boolean(themeIncludedTitles[theme]);
 
+  // Normalize a stored value (Postgres array string or JS array) into a string array
+  const normalizeArray = (value) => {
+    if (Array.isArray(value)) {
+      return value.map((item) => String(item).trim()).filter(Boolean);
+    }
+
+    if (!value) return [];
+
+    if (typeof value === 'string') {
+      return value
+        .replace(/^\{/, '')
+        .replace(/\}$/, '')
+        .split(',')
+        .map((item) => item.replace(/^"|"$/g, '').trim())
+        .filter(Boolean);
+    }
+
+    return [];
+  };
+
+  // Read a project's strategic focus areas from the stored Supabase column
+  const getStrategicFocusAreas = (project) => {
+    return [
+      ...normalizeArray(project.strategic_focus_areas),
+      ...normalizeArray(project.strategicFocusAreas),
+      ...normalizeArray(project.raw_supabase_project?.strategic_focus_areas),
+      ...normalizeArray(project.raw_supabase_project?.strategicFocusAreas)
+    ];
+  };
+
   // Filter projects based on active filters
   const applyFilters = () => {
     const { search, campus, college, stage, dataStatus, theme, qualitativeTheme } = activeFilters;
@@ -400,27 +430,9 @@ const SupabaseDashboard = () => {
       if (dataStatus === 'Collection Planned' && project.dataStatus.includes('planned')) matchesDataStatus = true;
       if (dataStatus === 'No Data' && !project.dataStatus.includes('Yes') && !project.dataStatus.includes('planned')) matchesDataStatus = true;
 
-      // Theme filter (Strategic Focus Areas)
-      let matchesTheme = !theme;
-      if (theme) {
-        if (themeHasIncludeList(theme)) {
-          matchesTheme = isThemeProjectIncluded(theme, project);
-          if (matchesTheme && isThemeProjectExcluded(theme, project)) {
-            matchesTheme = false;
-          }
-        } else {
-          const themeKeywords = getThemeKeywords();
-          if (themeKeywords[theme]) {
-            const text = (project.title + ' ' + project.college).toLowerCase();
-            matchesTheme = themeKeywords[theme].some(keyword => 
-              text.includes(keyword.toLowerCase())
-            );
-            if (matchesTheme && isThemeProjectExcluded(theme, project)) {
-              matchesTheme = false;
-            }
-          }
-        }
-      }
+      // Theme filter (Strategic Focus Areas) - match the stored Supabase column,
+      // consistent with how the Strategic Focus Areas card counts projects.
+      const matchesTheme = !theme || getStrategicFocusAreas(project).includes(theme);
 
       // Qualitative theme filter (Challenges/Impact themes)
       let matchesQualitativeTheme = !qualitativeTheme;
